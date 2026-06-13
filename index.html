@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F6F3;
+      --surface: #FFFFFF;
+      --text: #1A1A18;
+      --muted: #8A8A85;
+      --accent: #2D5BE3;
+      --border: #E4E3DF;
+      --tag-bg: #EEEDE9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(247,246,243,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 60px;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 140px 40px 80px;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    /* ── GALLERY SECTION ── */
+    .section {
+      padding: 80px 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-count {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── FILTER TABS ── */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .filter-btn {
+      padding: 7px 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 100px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+
+    .filter-btn.active {
+      background: var(--text);
+      border-color: var(--text);
+      color: #fff;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .card-thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: var(--tag-bg);
+    }
+
+    /* placeholder thumb */
+    .card-thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--tag-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 32px;
+    }
+
+    .card-body {
+      padding: 16px 20px 20px;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--tag-bg);
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* hide filtered */
+    .card.hidden { display: none; }
+
+    /* ── BLOG ── */
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .blog-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: opacity 0.18s;
+    }
+
+    .blog-item:hover { opacity: 0.6; }
+
+    .blog-item-left { display: flex; flex-direction: column; gap: 6px; }
+
+    .blog-item-title {
+      font-size: 17px;
+      font-weight: 400;
+    }
+
+    .blog-item-tags { display: flex; gap: 8px; }
+
+    .blog-item-tag {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .blog-item-date {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .skills-list li {
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 5px 12px;
+      color: var(--muted);
+    }
+
+    .about-image-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--tag-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 48px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-inner {
+      max-width: 560px;
+    }
+
+    .contact-inner h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .contact-inner p {
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--surface);
+      font-size: 14px;
+      transition: all 0.18s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .contact-link span { color: var(--muted); font-size: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 11px; }
+      .hero, .section { padding-left: 20px; padding-right: 20px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image-wrap { aspect-ratio: 4/3; order: -1; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Tvoje Jméno</a>
+    <ul class="nav-links">
+      <li><a href="#galerie" class="active">Práce</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#o-mne">O mně</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Fotograf · Videomaker · 3D Artist</p>
+    <h1>Vizuální tvorba<br>bez <em>kompromisů.</em></h1>
+    <p>Pracuji s fotografií, pohyblivým obrazem a 3D — všechno s důrazem na detail a čisté vyprávění.</p>
+  </section>
+
+  <!-- GALERIE -->
+  <section class="section" id="galerie">
+    <div class="section-header">
+      <h2 class="section-title">Práce</h2>
+      <span class="section-count" id="count">6 projektů</span>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Vše</button>
+      <button class="filter-btn" data-filter="foto">Fotografie</button>
+      <button class="filter-btn" data-filter="video">Video</button>
+      <button class="filter-btn" data-filter="3d">3D</button>
+      <button class="filter-btn" data-filter="ostatni">Ostatní</button>
+    </div>
+
+    <div class="grid" id="grid">
+
+      <div class="card" data-cat="foto">
+        <div class="card-thumb-placeholder">🌿</div>
+        <div class="card-body">
+          <span class="card-tag">Fotografie</span>
+          <div class="card-title">Příroda — jaro 2024</div>
+          <div class="card-desc">Série krajinářských snímků z Krkonoš při ranním světle.</div>
+        </div>
+      </div>
+
+      <div class="card" data-cat="video">
+        <div class="card-thumb-placeholder">🎬</div>
+        <div class="card-body">
+          <span class="card-tag">Video</span>
+          <div class="card-title">Krátký dokument</div>
+          <div class="card-desc">Mini-dokument o řemeslnících ze středních Čech.</div>
+        </div>
+      </div>
+
+      <div class="card" data-cat="3d">
+        <div class="card-thumb-placeholder">🧊</div>
+        <div class="card-body">
+          <span class="card-tag">3D</span>
+          <div class="card-title">Architektonická vizualizace</div>
+          <div class="card-desc">Render interiéru moderního bytu — Blender + Cycles.</div>
+        </div>
+      </div>
+
+      <div class="card" data-cat="foto">
+        <div class="card-thumb-placeholder">🏙️</div>
+        <div class="card-body">
+          <span class="card-tag">Fotografie</span>
+          <div class="card-title">Urbanistická Praha</div>
+          <div class="card-desc">Street fotografie zachycující rytmus města.</div>
+        </div>
+      </div>
+
+      <div class="card" data-cat="3d">
+        <div class="card-thumb-placeholder">🌀</div>
+        <div class="card-body">
+          <span class="card-tag">3D</span>
+          <div class="card-title">Abstraktní scéna</div>
+          <div class="card-desc">Procedurální geometrie, experimentální osvětlení.</div>
+        </div>
+      </div>
+
+      <div class="card" data-cat="ostatni">
+        <div class="card-thumb-placeholder">✏️</div>
+        <div class="card-body">
+          <span class="card-tag">Ostatní</span>
+          <div class="card-title">Grafický design</div>
+          <div class="card-desc">Vizuální identita pro lokální kavárnu.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="section" id="blog">
+    <div class="section-header">
+      <h2 class="section-title">Blog</h2>
+    </div>
+
+    <div class="blog-list">
+
+      <a href="#" class="blog-item">
+        <div class="blog-item-left">
+          <div class="blog-item-title">Jak jsem přešel na Blender — a proč se nevracím</div>
+          <div class="blog-item-tags">
+            <span class="blog-item-tag">3D</span>
+            <span class="blog-item-tag">Workflow</span>
+          </div>
+        </div>
+        <div class="blog-item-date">Červen 2025</div>
+      </a>
+
+      <a href="#" class="blog-item">
+        <div class="blog-item-left">
+          <div class="blog-item-title">5 věcí, co jsem se naučil při natáčení dokumentu</div>
+          <div class="blog-item-tags">
+            <span class="blog-item-tag">Video</span>
+          </div>
+        </div>
+        <div class="blog-item-date">Duben 2025</div>
+      </a>
+
+      <a href="#" class="blog-item">
+        <div class="blog-item-left">
+          <div class="blog-item-title">Ranní světlo — nejlepší hodina pro fotografa</div>
+          <div class="blog-item-tags">
+            <span class="blog-item-tag">Fotografie</span>
+            <span class="blog-item-tag">Tipy</span>
+          </div>
+        </div>
+        <div class="blog-item-date">Únor 2025</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- O MNĚ -->
+  <section class="section" id="o-mne">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Ahoj, jsem<br>Tvoje Jméno.</h2>
+        <p>Pracuji na pomezí fotografie, videa a 3D. Zajímá mě vizuální vyprávění — ať už přes jeden snímek, nebo dvouminutový film.</p>
+        <p>Vyrůstal jsem v Česku, inspirace beru z architektury, přírody a obyčejných věcí, které se dají přehlédnout.</p>
+        <ul class="skills-list">
+          <li>Fotografie</li>
+          <li>Video</li>
+          <li>Blender</li>
+          <li>DaVinci Resolve</li>
+          <li>Lightroom</li>
+          <li>After Effects</li>
+        </ul>
+      </div>
+      <div class="about-image-wrap">👤</div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="section" id="kontakt">
+    <div class="contact-inner">
+      <h2>Pojďme spolupracovat.</h2>
+      <p>Máš projekt, nápad, nebo chceš jen říct ahoj — napiš.</p>
+      <div class="contact-links">
+        <a href="mailto:tvuj@email.cz" class="contact-link">
+          tvuj@email.cz
+          <span>E-mail →</span>
+        </a>
+        <a href="https://instagram.com/" target="_blank" class="contact-link">
+          @tvojeinstagram
+          <span>Instagram →</span>
+        </a>
+        <a href="https://linkedin.com/" target="_blank" class="contact-link">
+          LinkedIn
+          <span>Profil →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Tvoje Jméno</span>
+    <span>Postaveno na GitHub Pages</span>
+  </footer>
+
+  <script>
+    // Filter logic
+    const btns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+    const count = document.getElementById('count');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        let visible = 0;
+
+        cards.forEach(card => {
+          const match = filter === 'all' || card.dataset.cat === filter;
+          card.classList.toggle('hidden', !match);
+          if (match) visible++;
+        });
+
+        count.textContent = visible + (visible === 1 ? ' projekt' : visible < 5 ? ' projekty' : ' projektů');
+      });
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
