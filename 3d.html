@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Tvoje Jméno</a>
+    <ul class="nav-links">
+      <li><a href="index.html#prace" class="active">Práce</a></li>
+      <li><a href="index.html#blog">Blog</a></li>
+      <li><a href="index.html#o-mne">O mně</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- CATEGORY HEADER -->
+  <section class="category-header">
+    <p class="hero-eyebrow">Práce</p>
+    <h1>3D</h1>
+    <p>Vizualizace, produkty a abstraktní scény — výběr 3D projektů řazený podle data.</p>
+  </section>
+
+  <!-- CATEGORY TABS -->
+  <div class="category-tabs">
+    <a href="foto.html" class="cat-tab">Fotografie</a>
+    <a href="video.html" class="cat-tab">Video</a>
+    <a href="3d.html" class="cat-tab active">3D</a>
+    <a href="ostatni.html" class="cat-tab">Ostatní</a>
+  </div>
+
+  <p class="gallery-count" id="count">3 projekty</p>
+
+  <!-- CONTROLS -->
+  <div class="controls-bar">
+    <div class="sort-toggle">
+      <button class="sort-btn active" data-sort="newest">Nejnovější</button>
+      <button class="sort-btn" data-sort="oldest">Nejstarší</button>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Vše</button>
+      <button class="filter-btn" data-filter="vizualizace">Vizualizace</button>
+      <button class="filter-btn" data-filter="produkt">Produkt</button>
+      <button class="filter-btn" data-filter="abstrakce">Abstrakce</button>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid" id="grid">
+
+    <div class="card" data-date="2024-05-15" data-tag="produkt">
+      <div class="card-thumb-placeholder">🎧</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Produkt</span>
+          <span class="card-date">15. 5. 2024</span>
+        </div>
+        <div class="card-title">Produktová vizualizace — sluchátka</div>
+        <div class="card-desc">Fotorealistický render sluchátek pro e-shopovou prezentaci produktu.</div>
+      </div>
+    </div>
+
+    <div class="card" data-date="2024-03-20" data-tag="vizualizace">
+      <div class="card-thumb-placeholder">🧊</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Vizualizace</span>
+          <span class="card-date">20. 3. 2024</span>
+        </div>
+        <div class="card-title">Architektonická vizualizace</div>
+        <div class="card-desc">Render interiéru moderního bytu — Blender + Cycles.</div>
+      </div>
+    </div>
+
+    <div class="card" data-date="2024-01-10" data-tag="abstrakce">
+      <div class="card-thumb-placeholder">🌀</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Abstrakce</span>
+          <span class="card-date">10. 1. 2024</span>
+        </div>
+        <div class="card-title">Abstraktní scéna</div>
+        <div class="card-desc">Procedurální geometrie s experimentálním osvětlením a materiály.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Tvoje Jméno</span>
+    <span>Postaveno na GitHub Pages</span>
+  </footer>
+
+  <script src="assets/gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fotografie — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Tvoje Jméno</a>
+    <ul class="nav-links">
+      <li><a href="index.html#prace" class="active">Práce</a></li>
+      <li><a href="index.html#blog">Blog</a></li>
+      <li><a href="index.html#o-mne">O mně</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- CATEGORY HEADER -->
+  <section class="category-header">
+    <p class="hero-eyebrow">Práce</p>
+    <h1>Fotografie</h1>
+    <p>Krajina, architektura, ulice a portréty — výběr fotografických projektů řazený podle data.</p>
+  </section>
+
+  <!-- CATEGORY TABS -->
+  <div class="category-tabs">
+    <a href="foto.html" class="cat-tab active">Fotografie</a>
+    <a href="video.html" class="cat-tab">Video</a>
+    <a href="3d.html" class="cat-tab">3D</a>
+    <a href="ostatni.html" class="cat-tab">Ostatní</a>
+  </div>
+
+  <p class="gallery-count" id="count">4 projekty</p>
+
+  <!-- CONTROLS -->
+  <div class="controls-bar">
+    <div class="sort-toggle">
+      <button class="sort-btn active" data-sort="newest">Nejnovější</button>
+      <button class="sort-btn" data-sort="oldest">Nejstarší</button>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Vše</button>
+      <button class="filter-btn" data-filter="příroda">Příroda</button>
+      <button class="filter-btn" data-filter="architektura">Architektura</button>
+      <button class="filter-btn" data-filter="street">Street</button>
+      <button class="filter-btn" data-filter="portrét">Portrét</button>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid" id="grid">
+
+    <div class="card" data-date="2024-06-01" data-tag="portrét">
+      <div class="card-thumb-placeholder">🧑</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Portrét</span>
+          <span class="card-date">1. 6. 2024</span>
+        </div>
+        <div class="card-title">Studio session</div>
+        <div class="card-desc">Sada portrétů ve studiu s důrazem na práci se světlem a jednoduchým pozadím.</div>
+      </div>
+    </div>
+
+    <div class="card" data-date="2024-04-10" data-tag="příroda">
+      <div class="card-thumb-placeholder">🌿</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Příroda</span>
+          <span class="card-date">10. 4. 2024</span>
+        </div>
+        <div class="card-title">Příroda — jaro 2024</div>
+        <div class="card-desc">Série krajinářských snímků z Krkonoš při ranním světle.</div>
+      </div>
+    </div>
+
+    <div class="card" data-date="2024-02-15" data-tag="street">
+      <div class="card-thumb-placeholder">🏙️</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Street</span>
+          <span class="card-date">15. 2. 2024</span>
+        </div>
+        <div class="card-title">Urbanistická Praha</div>
+        <div class="card-desc">Street fotografie zachycující rytmus a atmosféru centra města.</div>
+      </div>
+    </div>
+
+    <div class="card" data-date="2023-11-20" data-tag="architektura">
+      <div class="card-thumb-placeholder">🏛️</div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Architektura</span>
+          <span class="card-date">20. 11. 2023</span>
+        </div>
+        <div class="card-title">Národní knihovna</div>
+        <div class="card-desc">Detailní pohledy na linie a materiály moderní knihovní budovy.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Tvoje Jméno</span>
+    <span>Postaveno na GitHub Pages</span>
+  </footer>
+
+  <script src="assets/gallery.js"></script>
+</body>
+</html>
