@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,47 +9,37 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo">Tomáš Mašek</a>
     <ul class="nav-links">
-      <li><a href="#prace">Work</a></li>
+      <li><a href="#work">Work</a></li>
       <li><a href="#blog">Blog</a></li>
-      <li><a href="#o-mne">About me</a></li>
-      <li><a href="#kontakt">Contact</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg">
       <img src="images/hero-bg.webp" alt="">
     </div>
-
     <div class="hero-content">
       <p class="hero-eyebrow">Photographer · Videomaker · 3D Artist</p>
       <h1 class="hero-name">Tomáš Mašek</h1>
     </div>
-
-   <!-- Ořezaný obrázek (ruce s alpha) — jde přes text -->
-   <div class="hero-cutout">
-          <!-- obrazek pohybliveho BG nefunguje takze takto nachat
-            <img src="images/hero-cutout.png" alt="">
-          -->
+    <div class="hero-cutout">
+      <!-- <img src="images/hero-cutout.png" alt=""> -->
     </div>
-
     <div class="hero-scroll">Scroll</div>
   </section>
 
-  <!-- PRÁCE — CATEGORY GRID -->
-  <section class="section" id="prace">
+  <section class="section" id="work">
     <p class="section-label">Work</p>
-
     <div class="cat-grid">
 
       <a href="foto.html" class="cat-card foto">
         <div class="cat-card-bg">
-          <!-- <img src="images/cover-foto.jpg" alt="Fotografie"> -->
+          <!-- <img src="images/cover-foto.jpg" alt="Photography"> -->
         </div>
         <div class="cat-card-overlay"></div>
         <div class="cat-card-body">
@@ -91,7 +81,7 @@
 
       <a href="ostatni.html" class="cat-card ostatni">
         <div class="cat-card-bg">
-          <!-- <img src="images/cover-ostatni.jpg" alt="Ostatní"> -->
+          <!-- <img src="images/cover-other.jpg" alt="Other"> -->
         </div>
         <div class="cat-card-overlay"></div>
         <div class="cat-card-body">
@@ -106,57 +96,53 @@
     </div>
   </section>
 
-  <!-- BLOG -->
   <section class="section" id="blog">
     <p class="section-label">Blog</p>
-
     <div class="blog-list">
 
       <a href="#" class="blog-item">
         <div>
-          <div class="blog-item-title">Jak jsem přešel na Blender — a proč se nevracím</div>
+          <div class="blog-item-title">Why I switched to Blender — and never looked back</div>
           <div class="blog-item-tags">
             <span class="blog-item-tag">3D</span>
             <span class="blog-item-tag">Workflow</span>
           </div>
         </div>
-        <div class="blog-item-date">Červen 2026</div>
+        <div class="blog-item-date">June 2025</div>
       </a>
 
       <a href="#" class="blog-item">
         <div>
-          <div class="blog-item-title">5 věcí, co jsem se naučil při natáčení dokumentu</div>
+          <div class="blog-item-title">5 things I learned while filming a documentary</div>
           <div class="blog-item-tags">
             <span class="blog-item-tag">Video</span>
           </div>
         </div>
-        <div class="blog-item-date">Duben 2025</div>
+        <div class="blog-item-date">April 2025</div>
       </a>
 
       <a href="#" class="blog-item">
         <div>
-          <div class="blog-item-title">Ranní světlo — nejlepší hodina pro fotografa</div>
+          <div class="blog-item-title">Golden hour — the best time of day for a photographer</div>
           <div class="blog-item-tags">
-            <span class="blog-item-tag">Fotografie</span>
+            <span class="blog-item-tag">Photography</span>
           </div>
         </div>
-        <div class="blog-item-date">Únor 2025</div>
+        <div class="blog-item-date">February 2025</div>
       </a>
 
     </div>
   </section>
 
-  <!-- O MNĚ -->
-  <section class="section" id="o-mne">
-    <p class="section-label">O mně</p>
-
+  <section class="section" id="about">
+    <p class="section-label">About</p>
     <div class="about-grid">
       <div class="about-text">
-        <h2>Ahoj,<br>jsem Tomáš.</h2>
-        <p>Pracuji na pomezí fotografie, videa a 3D. Zajímá mě vizuální vyprávění — ať už přes jeden snímek, nebo dvouminutový film.</p>
-        <p>Vyrůstal jsem v Česku, inspirace beru z architektury, přírody a obyčejných věcí, které se dají přehlédnout.</p>
+        <h2>Hi,<br>I'm Tomáš.</h2>
+        <p>I work at the intersection of photography, video and 3D. I'm drawn to visual storytelling — whether through a single frame or a two-minute film.</p>
+        <p>Based in the Czech Republic, I find inspiration in architecture, nature and the ordinary things that are easy to overlook.</p>
         <ul class="skills-list">
-          <li>Fotografie</li>
+          <li>Photography</li>
           <li>Video</li>
           <li>Blender</li>
           <li>DaVinci Resolve</li>
@@ -170,32 +156,30 @@
     </div>
   </section>
 
-  <!-- KONTAKT -->
-  <section class="section" id="kontakt">
+  <section class="section" id="contact">
     <div class="contact-inner">
-      <h2>Pojďme<br>spolupracovat.</h2>
-      <p>Máš projekt, nápad, nebo chceš jen říct ahoj — napiš.</p>
+      <h2>Let's work<br>together.</h2>
+      <p>Have a project, an idea, or just want to say hello — reach out.</p>
       <div class="contact-links">
-        <a href="mailto:tvuj@email.cz" class="contact-link">
-          tvuj@email.cz
-          <span>E-mail →</span>
+        <a href="mailto:your@email.com" class="contact-link">
+          your@email.com
+          <span>Email →</span>
         </a>
         <a href="https://instagram.com/" target="_blank" class="contact-link">
-          @tvojeinstagram
+          @yourinstagram
           <span>Instagram →</span>
         </a>
         <a href="https://linkedin.com/" target="_blank" class="contact-link">
           LinkedIn
-          <span>Profil →</span>
+          <span>Profile →</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <span>© 2026 Tomáš Mašek</span>
-    <span>Postaveno na GitHub Pages</span>
+    <span>© 2025 Tomáš Mašek</span>
+    <span>Built on GitHub Pages</span>
   </footer>
 
 </body>

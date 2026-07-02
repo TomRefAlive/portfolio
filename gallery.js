@@ -11,26 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentFilter = 'all';
 
   function formatCount(n) {
-    if (n === 1) return '1 projekt';
-    if (n >= 2 && n <= 4) return n + ' projekty';
-    return n + ' projektů';
+    return n === 1 ? '1 project' : n + ' projects';
   }
 
   function render() {
     const visible = cards.filter(c => currentFilter === 'all' || c.dataset.tag === currentFilter);
-
     visible.sort((a, b) => {
       const da = new Date(a.dataset.date);
       const db = new Date(b.dataset.date);
       return currentSort === 'newest' ? db - da : da - db;
     });
-
     cards.forEach(c => c.classList.add('hidden'));
     visible.forEach((c, i) => {
       c.classList.remove('hidden');
       c.style.order = i;
     });
-
     if (count) count.textContent = formatCount(visible.length);
   }
 

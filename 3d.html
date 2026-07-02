@@ -1,101 +1,95 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D — Portfolio</title>
+  <title>3D — Tomáš Mašek</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo">Tomáš Mašek</a>
     <ul class="nav-links">
-      <li><a href="index.html#prace" class="active">Práce</a></li>
+      <li><a href="index.html#work">Work</a></li>
       <li><a href="index.html#blog">Blog</a></li>
-      <li><a href="index.html#o-mne">O mně</a></li>
-      <li><a href="index.html#kontakt">Kontakt</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- CATEGORY HEADER -->
   <section class="category-header">
     <p class="hero-eyebrow">Work</p>
     <h1>3D</h1>
-    <p>Vizualizace, produkty a abstraktní scény — výběr 3D projektů řazený podle data.</p>
+    <p>Visualisations, product renders and abstract scenes — a selection of 3D projects sorted by date.</p>
   </section>
 
-  <!-- CATEGORY TABS -->
   <div class="category-tabs">
-    <a href="foto.html" class="cat-tab">Fotografie</a>
+    <a href="foto.html" class="cat-tab">Photos</a>
     <a href="video.html" class="cat-tab">Video</a>
     <a href="3d.html" class="cat-tab active">3D</a>
-    <a href="ostatni.html" class="cat-tab">Ostatní</a>
+    <a href="ostatni.html" class="cat-tab">Other</a>
   </div>
 
-  <p class="gallery-count" id="count">3 projekty</p>
+  <p class="gallery-count" id="count">3 projects</p>
 
-  <!-- CONTROLS -->
   <div class="controls-bar">
     <div class="sort-toggle">
-      <button class="sort-btn active" data-sort="newest">Nejnovější</button>
-      <button class="sort-btn" data-sort="oldest">Nejstarší</button>
+      <button class="sort-btn active" data-sort="newest">Newest</button>
+      <button class="sort-btn" data-sort="oldest">Oldest</button>
     </div>
     <div class="filter-bar">
-      <button class="filter-btn active" data-filter="all">Vše</button>
-      <button class="filter-btn" data-filter="vizualizace">Vizualizace</button>
-      <button class="filter-btn" data-filter="produkt">Produkt</button>
-      <button class="filter-btn" data-filter="abstrakce">Abstrakce</button>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="visualisation">Visualisation</button>
+      <button class="filter-btn" data-filter="product">Product</button>
+      <button class="filter-btn" data-filter="abstract">Abstract</button>
     </div>
   </div>
 
-  <!-- GRID -->
   <div class="grid" id="grid">
 
-    <div class="card" data-date="2024-05-15" data-tag="produkt">
+    <div class="card" data-date="2024-05-15" data-tag="product">
       <div class="card-thumb-placeholder">🎧</div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="card-tag">Produkt</span>
-          <span class="card-date">15. 5. 2024</span>
+          <span class="card-tag">Product</span>
+          <span class="card-date">May 15, 2024</span>
         </div>
-        <div class="card-title">Produktová vizualizace — sluchátka</div>
-        <div class="card-desc">Fotorealistický render sluchátek pro e-shopovou prezentaci produktu.</div>
+        <div class="card-title">Product render — headphones</div>
+        <div class="card-desc">Photorealistic render of headphones for an e-commerce product listing.</div>
       </div>
     </div>
 
-    <div class="card" data-date="2024-03-20" data-tag="vizualizace">
+    <div class="card" data-date="2024-03-20" data-tag="visualisation">
       <div class="card-thumb-placeholder">🧊</div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="card-tag">Vizualizace</span>
-          <span class="card-date">20. 3. 2024</span>
+          <span class="card-tag">Visualisation</span>
+          <span class="card-date">Mar 20, 2024</span>
         </div>
-        <div class="card-title">Architektonická vizualizace</div>
-        <div class="card-desc">Render interiéru moderního bytu — Blender + Cycles.</div>
+        <div class="card-title">Architectural visualisation</div>
+        <div class="card-desc">Interior render of a modern apartment — Blender + Cycles.</div>
       </div>
     </div>
 
-    <div class="card" data-date="2024-01-10" data-tag="abstrakce">
+    <div class="card" data-date="2024-01-10" data-tag="abstract">
       <div class="card-thumb-placeholder">🌀</div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="card-tag">Abstrakce</span>
-          <span class="card-date">10. 1. 2024</span>
+          <span class="card-tag">Abstract</span>
+          <span class="card-date">Jan 10, 2024</span>
         </div>
-        <div class="card-title">Abstraktní scéna</div>
-        <div class="card-desc">Procedurální geometrie s experimentálním osvětlením a materiály.</div>
+        <div class="card-title">Abstract scene</div>
+        <div class="card-desc">Procedural geometry with experimental lighting and materials.</div>
       </div>
     </div>
 
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <span>© 2025 Tomáš Mašek</span>
-    <span>Postaveno na GitHub Pages</span>
+    <span>Built on GitHub Pages</span>
   </footer>
 
   <script src="gallery.js"></script>

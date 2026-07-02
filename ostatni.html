@@ -1,43 +1,39 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ostatní — Portfolio</title>
+  <title>Other work — Tomáš Mašek</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo">Tomáš Mašek</a>
     <ul class="nav-links">
-      <li><a href="index.html#prace" class="active">Work</a></li>
+      <li><a href="index.html#work">Work</a></li>
       <li><a href="index.html#blog">Blog</a></li>
-      <li><a href="index.html#o-mne">About me</a></li>
-      <li><a href="index.html#kontakt">Contact</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- CATEGORY HEADER -->
   <section class="category-header">
     <p class="hero-eyebrow">Work</p>
     <h1>Other</h1>
-    <p>Grafický design, branding a web — projekty mimo fotografii, video a 3D.</p>
+    <p>Graphic design, branding and web — projects outside of photography, video and 3D.</p>
   </section>
 
-  <!-- CATEGORY TABS -->
   <div class="category-tabs">
     <a href="foto.html" class="cat-tab">Photos</a>
     <a href="video.html" class="cat-tab">Video</a>
     <a href="3d.html" class="cat-tab">3D</a>
-    <a href="ostatni.html" class="cat-tab active">Other work</a>
+    <a href="ostatni.html" class="cat-tab active">Other</a>
   </div>
 
   <p class="gallery-count" id="count">2 projects</p>
 
-  <!-- CONTROLS -->
   <div class="controls-bar">
     <div class="sort-toggle">
       <button class="sort-btn active" data-sort="newest">Newest</button>
@@ -50,7 +46,6 @@
     </div>
   </div>
 
-  <!-- GRID -->
   <div class="grid" id="grid">
 
     <div class="card" data-date="2024-04-25" data-tag="web design">
@@ -58,10 +53,10 @@
       <div class="card-body">
         <div class="card-meta">
           <span class="card-tag">Web design</span>
-          <span class="card-date">25. 4. 2024</span>
+          <span class="card-date">Apr 25, 2024</span>
         </div>
         <div class="card-title">Landing page</div>
-        <div class="card-desc">Návrh a stavba jednostránkového webu pro lokální projekt.</div>
+        <div class="card-desc">Design and build of a one-page website for a local project.</div>
       </div>
     </div>
 
@@ -70,19 +65,18 @@
       <div class="card-body">
         <div class="card-meta">
           <span class="card-tag">Branding</span>
-          <span class="card-date">1. 12. 2023</span>
+          <span class="card-date">Dec 1, 2023</span>
         </div>
-        <div class="card-title">Grafický design pro kavárnu</div>
-        <div class="card-desc">Vizuální identita pro lokální kavárnu — logo, menu a tiskoviny.</div>
+        <div class="card-title">Café branding</div>
+        <div class="card-desc">Visual identity for a local café — logo, menu and print materials.</div>
       </div>
     </div>
 
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <span>© 2025 Tomáš Mašek</span>
-    <span>Postaveno na GitHub Pages</span>
+    <span>Built on GitHub Pages</span>
   </footer>
 
   <script src="gallery.js"></script>
