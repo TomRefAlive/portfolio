@@ -3,17 +3,392 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <title>Tomáš Mašek — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #1a1a1a;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.45);
+      --border: rgba(255,255,255,0.1);
+      --accent: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 20px 32px;
+      gap: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      padding: 7px 18px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      transition: background 0.2s, border-color 0.2s;
+      background: transparent;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 500px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: #0a0a0a;
+    }
+
+    /* Swap this src for your own image */
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.75;
+      display: block;
+    }
+
+    /* Dark gradient so name stays readable */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.15) 0%,
+        rgba(10,10,10,0.0) 40%,
+        rgba(10,10,10,0.55) 80%,
+        rgba(10,10,10,0.92) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 40px 80px;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(90px, 8vw, 110px);
+      line-height: 1.2;
+      letter-spacing: -0.06em;
+      color: #fff;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 52px;
+      right: 40px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-scroll::before {
+      content: '';
+      width: 1px;
+      height: 48px;
+      background: var(--muted);
+    }
+
+    /* ── SECTION BASE ── */
+    .section {
+      padding: 80px 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* ── CATEGORY GRID ── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .cat-card {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      text-decoration: none;
+      background: var(--surface);
+      display: flex;
+      align-items: flex-end;
+    }
+
+    /* Background image per card — add via inline style or img tag */
+    .cat-card-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--surface2);
+      transition: transform 0.5s ease;
+    }
+
+    .cat-card-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(0.3) brightness(0.7);
+      transition: filter 0.4s ease, transform 0.5s ease;
+    }
+
+    .cat-card:hover .cat-card-bg { transform: scale(1.04); }
+    .cat-card:hover .cat-card-bg img { filter: grayscale(0) brightness(0.85); }
+
+    .cat-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 55%);
+    }
+
+    .cat-card-body {
+      position: relative;
+      z-index: 2;
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+    }
+
+    .cat-card-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(22px, 3vw, 36px);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .cat-card-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .cat-card-count {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+
+    .cat-card-arrow {
+      font-size: 20px;
+      color: #fff;
+      transition: transform 0.25s;
+    }
+
+    .cat-card:hover .cat-card-arrow { transform: translate(3px, -3px); }
+
+    /* Placeholder gradient backgrounds when no image */
+    .cat-card.foto .cat-card-bg    { background: linear-gradient(135deg, #1a1a1a, #2d2d2d); }
+    .cat-card.video .cat-card-bg   { background: linear-gradient(135deg, #0d0d0d, #1f1f1f); }
+    .cat-card.three .cat-card-bg   { background: linear-gradient(135deg, #111420, #1e2035); }
+    .cat-card.ostatni .cat-card-bg { background: linear-gradient(135deg, #1a1410, #2d2418); }
+
+    /* ── BLOG ── */
+    .blog-list { display: flex; flex-direction: column; }
+
+    .blog-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: opacity 0.18s;
+    }
+
+    .blog-item:hover { opacity: 0.5; }
+    .blog-item-title { font-size: 16px; font-weight: 300; margin-bottom: 4px; }
+    .blog-item-tags { display: flex; gap: 8px; }
+
+    .blog-item-tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .blog-item-date { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(32px, 4vw, 52px);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+
+    .skills-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+
+    .skills-list li {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 5px 14px;
+      color: var(--muted);
+    }
+
+    .about-image-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: var(--surface2);
+    }
+
+    .about-image-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.2);
+    }
+
+    /* ── CONTACT ── */
+    .contact-inner { max-width: 560px; }
+
+    .contact-inner h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+
+    .contact-inner p { color: var(--muted); margin-bottom: 32px; }
+
+    .contact-links { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--surface);
+      font-size: 14px;
+      transition: background 0.18s;
+    }
+
+    .contact-link:hover { background: var(--surface2); }
+    .contact-link span { color: var(--muted); font-size: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .hero-content { padding: 0 20px 40px; }
+      .hero-scroll { display: none; }
+      .section { padding: 60px 20px; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .cat-card { aspect-ratio: 4/3; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-image-wrap { order: -1; aspect-ratio: 4/3; }
+      footer { flex-direction: column; gap: 8px; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">Tvoje Jméno</a>
     <ul class="nav-links">
-      <li><a href="#prace" class="active">Práce</a></li>
+      <li><a href="#prace">Práce</a></li>
       <li><a href="#blog">Blog</a></li>
       <li><a href="#o-mne">O mně</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
@@ -22,64 +397,77 @@
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-eyebrow">Fotograf · Videomaker · 3D Artist</p>
-    <h1>Vizuální tvorba<br>bez <em>kompromisů.</em></h1>
-    <p>Pracuji s fotografií, pohyblivým obrazem a 3D — všechno s důrazem na detail a čisté vyprávění.</p>
-  </section>
-
-  <!-- PRÁCE (HUB) -->
-  <section class="section" id="prace">
-    <div class="section-header">
-      <h2 class="section-title">Práce</h2>
+    <div class="hero-bg">
+      <img src="images/hero-bg.webp" alt="">
     </div>
 
-    <div class="work-grid">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Fotograf · Videomaker · 3D Artist</p>
+      <h1 class="hero-name">Tomáš Mašek</h1>
+    </div>
 
-      <a href="foto.html" class="work-card">
-        <div>
-          <div class="work-card-visual">🌿</div>
-          <h3>Fotografie</h3>
-          <p>4 projekty</p>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- PRÁCE — CATEGORY GRID -->
+  <section class="section" id="prace">
+    <p class="section-label">Práce</p>
+
+    <div class="cat-grid">
+
+      <a href="foto.html" class="cat-card foto">
+        <div class="cat-card-bg">
+          <!-- <img src="images/cover-foto.jpg" alt="Fotografie"> -->
         </div>
-        <div class="work-card-footer">
-          <span class="card-tag">Foto</span>
-          <span class="work-card-arrow">→</span>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <span class="cat-card-title">Fotografie</span>
+          <div class="cat-card-meta">
+            <span class="cat-card-count">6 projektů</span>
+            <span class="cat-card-arrow">↗</span>
+          </div>
         </div>
       </a>
 
-      <a href="video.html" class="work-card">
-        <div>
-          <div class="work-card-visual">🎬</div>
-          <h3>Video</h3>
-          <p>3 projekty</p>
+      <a href="video.html" class="cat-card video">
+        <div class="cat-card-bg">
+          <!-- <img src="images/cover-video.jpg" alt="Video"> -->
         </div>
-        <div class="work-card-footer">
-          <span class="card-tag">Video</span>
-          <span class="work-card-arrow">→</span>
-        </div>
-      </a>
-
-      <a href="3d.html" class="work-card">
-        <div>
-          <div class="work-card-visual">🧊</div>
-          <h3>3D</h3>
-          <p>3 projekty</p>
-        </div>
-        <div class="work-card-footer">
-          <span class="card-tag">3D</span>
-          <span class="work-card-arrow">→</span>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <span class="cat-card-title">Video</span>
+          <div class="cat-card-meta">
+            <span class="cat-card-count">3 projekty</span>
+            <span class="cat-card-arrow">↗</span>
+          </div>
         </div>
       </a>
 
-      <a href="ostatni.html" class="work-card">
-        <div>
-          <div class="work-card-visual">✏️</div>
-          <h3>Ostatní</h3>
-          <p>2 projekty</p>
+      <a href="3d.html" class="cat-card three">
+        <div class="cat-card-bg">
+          <!-- <img src="images/cover-3d.jpg" alt="3D"> -->
         </div>
-        <div class="work-card-footer">
-          <span class="card-tag">Ostatní</span>
-          <span class="work-card-arrow">→</span>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <span class="cat-card-title">3D</span>
+          <div class="cat-card-meta">
+            <span class="cat-card-count">3 projekty</span>
+            <span class="cat-card-arrow">↗</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="ostatni.html" class="cat-card ostatni">
+        <div class="cat-card-bg">
+          <!-- <img src="images/cover-ostatni.jpg" alt="Ostatní"> -->
+        </div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <span class="cat-card-title">Ostatní</span>
+          <div class="cat-card-meta">
+            <span class="cat-card-count">2 projekty</span>
+            <span class="cat-card-arrow">↗</span>
+          </div>
         </div>
       </a>
 
@@ -88,14 +476,12 @@
 
   <!-- BLOG -->
   <section class="section" id="blog">
-    <div class="section-header">
-      <h2 class="section-title">Blog</h2>
-    </div>
+    <p class="section-label">Blog</p>
 
     <div class="blog-list">
 
       <a href="#" class="blog-item">
-        <div class="blog-item-left">
+        <div>
           <div class="blog-item-title">Jak jsem přešel na Blender — a proč se nevracím</div>
           <div class="blog-item-tags">
             <span class="blog-item-tag">3D</span>
@@ -106,7 +492,7 @@
       </a>
 
       <a href="#" class="blog-item">
-        <div class="blog-item-left">
+        <div>
           <div class="blog-item-title">5 věcí, co jsem se naučil při natáčení dokumentu</div>
           <div class="blog-item-tags">
             <span class="blog-item-tag">Video</span>
@@ -116,11 +502,10 @@
       </a>
 
       <a href="#" class="blog-item">
-        <div class="blog-item-left">
+        <div>
           <div class="blog-item-title">Ranní světlo — nejlepší hodina pro fotografa</div>
           <div class="blog-item-tags">
             <span class="blog-item-tag">Fotografie</span>
-            <span class="blog-item-tag">Tipy</span>
           </div>
         </div>
         <div class="blog-item-date">Únor 2025</div>
@@ -131,9 +516,11 @@
 
   <!-- O MNĚ -->
   <section class="section" id="o-mne">
+    <p class="section-label">O mně</p>
+
     <div class="about-grid">
       <div class="about-text">
-        <h2>Ahoj, jsem<br>Tvoje Jméno.</h2>
+        <h2>Ahoj,<br>jsem Tomáš.</h2>
         <p>Pracuji na pomezí fotografie, videa a 3D. Zajímá mě vizuální vyprávění — ať už přes jeden snímek, nebo dvouminutový film.</p>
         <p>Vyrůstal jsem v Česku, inspirace beru z architektury, přírody a obyčejných věcí, které se dají přehlédnout.</p>
         <ul class="skills-list">
@@ -145,14 +532,16 @@
           <li>After Effects</li>
         </ul>
       </div>
-      <div class="about-image-wrap">👤</div>
+      <div class="about-image-wrap">
+        <!-- <img src="images/portrait.jpg" alt="Tomáš Mašek"> -->
+      </div>
     </div>
   </section>
 
   <!-- KONTAKT -->
   <section class="section" id="kontakt">
     <div class="contact-inner">
-      <h2>Pojďme spolupracovat.</h2>
+      <h2>Pojďme<br>spolupracovat.</h2>
       <p>Máš projekt, nápad, nebo chceš jen říct ahoj — napiš.</p>
       <div class="contact-links">
         <a href="mailto:tvuj@email.cz" class="contact-link">
@@ -173,26 +562,9 @@
 
   <!-- FOOTER -->
   <footer>
-    <span>© 2025 Tvoje Jméno</span>
+    <span>© 2025 Tomáš Mašek</span>
     <span>Postaveno na GitHub Pages</span>
   </footer>
 
-  <script>
-    // Active nav link on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(a => a.classList.remove('active'));
-          const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-          if (link) link.classList.add('active');
-        }
-      });
-    }, { threshold: 0.4 });
-
-    sections.forEach(s => observer.observe(s));
-  </script>
 </body>
 </html>
