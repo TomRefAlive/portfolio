@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fotografie — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">Tvoje Jméno</a>
+    <a href="index.html" class="nav-logo">Tomáš Mašek</a>
     <ul class="nav-links">
       <li><a href="index.html#prace" class="active">Práce</a></li>
       <li><a href="index.html#blog">Blog</a></li>
@@ -35,7 +35,7 @@
     <a href="ostatni.html" class="cat-tab">Ostatní</a>
   </div>
 
-  <p class="gallery-count" id="count">4 projekty</p>
+  <p class="gallery-count" id="count">6 projektů</p>
 
   <!-- CONTROLS -->
   <div class="controls-bar">
@@ -52,54 +52,98 @@
     </div>
   </div>
 
-  <!-- GRID -->
-  <div class="grid" id="grid">
+  <!-- PHOTO GRID -->
+  <div class="photo-grid" id="grid">
 
-    <div class="card" data-date="2024-06-01" data-tag="portrét">
-      <div class="card-thumb-placeholder">🧑</div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-tag">Portrét</span>
-          <span class="card-date">1. 6. 2024</span>
+    <div class="photo-item" data-date="2024-06-01" data-tag="portrét">
+      <div class="photo-wrap">
+        <div class="photo-placeholder">🧑</div>
+        <!-- az budes mit fotku, nahrad placeholder za:
+        <img src="images/studio-session.jpg" alt="Studio session"> -->
+        <div class="photo-overlay">
+          <span class="photo-overlay-tag">Portrét</span>
+          <span class="photo-overlay-title">Studio session</span>
+          <span class="photo-overlay-date">1. 6. 2024</span>
         </div>
-        <div class="card-title">Studio session</div>
-        <div class="card-desc">Sada portrétů ve studiu s důrazem na práci se světlem a jednoduchým pozadím.</div>
+      </div>
+      <div class="photo-caption-bar">
+        <span>Studio session</span>
+        <span class="photo-caption-date">1. 6. 2024</span>
       </div>
     </div>
 
-    <div class="card" data-date="2024-04-10" data-tag="příroda">
-      <div class="card-thumb-placeholder">🌿</div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-tag">Příroda</span>
-          <span class="card-date">10. 4. 2024</span>
+    <div class="photo-item" data-date="2024-04-10" data-tag="příroda">
+      <div class="photo-wrap">
+        <div class="photo-placeholder">🌿</div>
+        <div class="photo-overlay">
+          <span class="photo-overlay-tag">Příroda</span>
+          <span class="photo-overlay-title">Příroda — jaro 2024</span>
+          <span class="photo-overlay-date">10. 4. 2024</span>
         </div>
-        <div class="card-title">Příroda — jaro 2024</div>
-        <div class="card-desc">Série krajinářských snímků z Krkonoš při ranním světle.</div>
+      </div>
+      <div class="photo-caption-bar">
+        <span>Příroda — jaro 2024</span>
+        <span class="photo-caption-date">10. 4. 2024</span>
       </div>
     </div>
 
-    <div class="card" data-date="2024-02-15" data-tag="street">
-      <div class="card-thumb-placeholder">🏙️</div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-tag">Street</span>
-          <span class="card-date">15. 2. 2024</span>
+    <div class="photo-item" data-date="2024-02-15" data-tag="street">
+      <div class="photo-wrap">
+        <div class="photo-placeholder">🏙️</div>
+        <div class="photo-overlay">
+          <span class="photo-overlay-tag">Street</span>
+          <span class="photo-overlay-title">Urbanistická Praha</span>
+          <span class="photo-overlay-date">15. 2. 2024</span>
         </div>
-        <div class="card-title">Urbanistická Praha</div>
-        <div class="card-desc">Street fotografie zachycující rytmus a atmosféru centra města.</div>
+      </div>
+      <div class="photo-caption-bar">
+        <span>Urbanistická Praha</span>
+        <span class="photo-caption-date">15. 2. 2024</span>
       </div>
     </div>
 
-    <div class="card" data-date="2023-11-20" data-tag="architektura">
-      <div class="card-thumb-placeholder">🏛️</div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-tag">Architektura</span>
-          <span class="card-date">20. 11. 2023</span>
+    <div class="photo-item" data-date="2023-11-20" data-tag="architektura">
+      <div class="photo-wrap">
+        <div class="photo-placeholder">🏛️</div>
+        <div class="photo-overlay">
+          <span class="photo-overlay-tag">Architektura</span>
+          <span class="photo-overlay-title">Národní knihovna</span>
+          <span class="photo-overlay-date">20. 11. 2023</span>
         </div>
-        <div class="card-title">Národní knihovna</div>
-        <div class="card-desc">Detailní pohledy na linie a materiály moderní knihovní budovy.</div>
+      </div>
+      <div class="photo-caption-bar">
+        <span>Národní knihovna</span>
+        <span class="photo-caption-date">20. 11. 2023</span>
+      </div>
+    </div>
+
+    <div class="photo-item" data-date="2023-09-05" data-tag="příroda">
+      <div class="photo-wrap">
+        <div class="photo-placeholder">🍂</div>
+        <div class="photo-overlay">
+          <span class="photo-overlay-tag">Příroda</span>
+          <span class="photo-overlay-title">Podzimní série</span>
+          <span class="photo-overlay-date">5. 9. 2023</span>
+        </div>
+      </div>
+      <div class="photo-caption-bar">
+        <span>Podzimní série</span>
+        <span class="photo-caption-date">5. 9. 2023</span>
+      </div>
+    </div>
+
+    <div class="photo-item" data-date="2023-06-12" data-tag="street">
+      <div class="photo-wrap">
+        <div class="photo-placeholder">🌆</div>
+        <div class="photo-overlay">
+          <span class="photo-overlay-tag">Street</span>
+          <span class="photo-overlay-title">Noční Brno</span>
+          <span class="photo-overlay-date">12. 6. 2023</span>
+        </div>
+      </div>
+      <div class="photo-caption-bar">
+        <span>Noční Brno</span>
+        <span class="photo-caption-date">12. 6. 2023</span>
       </div>
     </div>
 
@@ -107,10 +151,60 @@
 
   <!-- FOOTER -->
   <footer>
-    <span>© 2025 Tvoje Jméno</span>
+    <span>© 2025 Tomáš Mašek</span>
     <span>Postaveno na GitHub Pages</span>
   </footer>
 
-  <script src="assets/gallery.js"></script>
+  <script>
+    // Sort + filter for photo-item elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('grid');
+      const items = Array.from(grid.querySelectorAll('.photo-item'));
+      const sortBtns = document.querySelectorAll('.sort-btn');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const count = document.getElementById('count');
+
+      let currentSort = 'newest';
+      let currentFilter = 'all';
+
+      function formatCount(n) {
+        if (n === 1) return '1 projekt';
+        if (n >= 2 && n <= 4) return n + ' projekty';
+        return n + ' projektů';
+      }
+
+      function render() {
+        const visible = items.filter(i => currentFilter === 'all' || i.dataset.tag === currentFilter);
+        visible.sort((a, b) => {
+          const da = new Date(a.dataset.date);
+          const db = new Date(b.dataset.date);
+          return currentSort === 'newest' ? db - da : da - db;
+        });
+        items.forEach(i => { i.classList.add('hidden'); i.style.order = 0; });
+        visible.forEach((i, idx) => { i.classList.remove('hidden'); i.style.order = idx; });
+        if (count) count.textContent = formatCount(visible.length);
+      }
+
+      sortBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sortBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentSort = btn.dataset.sort;
+          render();
+        });
+      });
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          render();
+        });
+      });
+
+      render();
+    });
+  </script>
 </body>
 </html>
