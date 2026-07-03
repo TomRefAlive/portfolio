@@ -48,11 +48,19 @@
     </div>
   </div>
 
+  <div class="grid-controls">
+    <span class="grid-controls-label">Grid</span>
+    <button class="grid-btn" onclick="setPhotoGrid(this, 2)">2</button>
+    <button class="grid-btn active" onclick="setPhotoGrid(this, 3)">3</button>
+    <button class="grid-btn" onclick="setPhotoGrid(this, 6)">6</button>
+    <button class="grid-btn" onclick="setPhotoGrid(this, 12)">12</button>
+  </div>
+
   <div class="photo-grid" id="grid">
 
-    <div class="photo-item" data-date="2024-06-01" data-tag="nature" onclick="window.location='projects/nature_walk_9_6_2026.html'" style="cursor:pointer">
+    <div class="photo-item" data-date="2024-06-01" data-tag="nature" onclick="window.location='projects/foto/nature_walk_9_6_2026.html'" style="cursor:pointer">
       <div class="photo-wrap">
-        <img src="images/9_6_2026//vylet_04.jpg" alt="Studio session">
+        <img src="images/9_6_2026/vylet_04.jpg" alt="Studio session">
         <div class="photo-overlay">
           <span class="photo-overlay-tag">Nature</span>
           <span class="photo-overlay-title">Nature walk</span>
@@ -65,7 +73,7 @@
       </div>
     </div>
 
-    <div class="photo-item" data-date="2024-04-10" data-tag="nature" onclick="window.location='projects/spring-2024.html'" style="cursor:pointer">
+    <div class="photo-item" data-date="2024-04-10" data-tag="nature" onclick="window.location='projects/foto/spring-2024.html'" style="cursor:pointer">
       <div class="photo-wrap">
         <div class="photo-placeholder">🌿</div>
         <div class="photo-overlay">
@@ -80,7 +88,7 @@
       </div>
     </div>
 
-    <div class="photo-item" data-date="2024-02-15" data-tag="street" onclick="window.location='projects/urban-prague.html'" style="cursor:pointer">
+    <div class="photo-item" data-date="2024-02-15" data-tag="street" onclick="window.location='projects/foto/urban-prague.html'" style="cursor:pointer">
       <div class="photo-wrap">
         <div class="photo-placeholder">🏙️</div>
         <div class="photo-overlay">
@@ -95,7 +103,7 @@
       </div>
     </div>
 
-    <div class="photo-item" data-date="2023-11-20" data-tag="architecture" onclick="window.location='projects/national-library.html'" style="cursor:pointer">
+    <div class="photo-item" data-date="2023-11-20" data-tag="architecture" onclick="window.location='projects/foto/national-library.html'" style="cursor:pointer">
       <div class="photo-wrap">
         <div class="photo-placeholder">🏛️</div>
         <div class="photo-overlay">
@@ -110,7 +118,7 @@
       </div>
     </div>
 
-    <div class="photo-item" data-date="2023-09-05" data-tag="nature" onclick="window.location='projects/autumn-series.html'" style="cursor:pointer">
+    <div class="photo-item" data-date="2023-09-05" data-tag="nature" onclick="window.location='projects/foto/autumn-series.html'" style="cursor:pointer">
       <div class="photo-wrap">
         <div class="photo-placeholder">🍂</div>
         <div class="photo-overlay">
@@ -125,7 +133,7 @@
       </div>
     </div>
 
-    <div class="photo-item" data-date="2023-06-12" data-tag="street" onclick="window.location='projects/brno-at-night.html'" style="cursor:pointer">
+    <div class="photo-item" data-date="2023-06-12" data-tag="street" onclick="window.location='projects/foto/brno-at-night.html'" style="cursor:pointer">
       <div class="photo-wrap">
         <div class="photo-placeholder">🌆</div>
         <div class="photo-overlay">
@@ -188,6 +196,45 @@
 
       render();
     });
+  </script>
+
+  <style>
+    .grid-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 40px;
+      margin-bottom: 16px;
+    }
+    .grid-controls-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+    .grid-btn {
+      padding: 5px 14px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text);
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .grid-btn:hover { background: rgba(255,255,255,0.08); }
+    .grid-btn.active { background: #fff; color: #0a0a0a; border-color: #fff; }
+    @media (max-width: 700px) { .grid-controls { padding: 0 20px; } }
+  </style>
+
+  <script>
+    function setPhotoGrid(btn, cols) {
+      document.getElementById('grid').style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+      document.querySelectorAll('.grid-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
   </script>
 </body>
 </html>

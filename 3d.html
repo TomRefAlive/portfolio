@@ -6,6 +6,109 @@
   <title>3D — Tomáš Mašek</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── 3D CARD GRID — video autoplay v karte ── */
+    .grid-3d {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 0 40px 80px;
+    }
+
+    .card-3d {
+      background: var(--surface);
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s;
+    }
+
+    .card-3d:hover { background: var(--surface2); }
+
+    /* Video preview v karte */
+    .card-3d-video {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .card-3d-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: filter 0.3s, transform 0.4s;
+    }
+
+    .card-3d:hover .card-3d-video video {
+      filter: brightness(1);
+      transform: scale(1.03);
+    }
+
+    /* Fallback obrazek kdyz neni video */
+    .card-3d-video img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: filter 0.3s, transform 0.4s;
+    }
+
+    .card-3d:hover .card-3d-video img {
+      filter: brightness(1);
+      transform: scale(1.03);
+    }
+
+    .card-3d-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+
+    .card-3d-body {
+      padding: 20px 24px 24px;
+    }
+
+    .card-3d-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .card-3d-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+
+    .card-3d-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 700px) {
+      .grid-3d { grid-template-columns: 1fr; margin: 0 0 60px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -22,7 +125,7 @@
   <section class="category-header">
     <p class="hero-eyebrow">Work</p>
     <h1>3D</h1>
-    <p>Visualisations, product renders and abstract scenes — a selection of 3D projects sorted by date.</p>
+    <p>Visualisations, product renders and abstract scenes — hover to preview.</p>
   </section>
 
   <div class="category-tabs">
@@ -32,56 +135,73 @@
     <a href="ostatni.html" class="cat-tab">Other</a>
   </div>
 
-  <p class="gallery-count" id="count">3 projects</p>
+  <p class="gallery-count">3 projects</p>
 
-  <div class="controls-bar">
-    <div class="sort-toggle">
-      <button class="sort-btn active" data-sort="newest">Newest</button>
-      <button class="sort-btn" data-sort="oldest">Oldest</button>
-    </div>
-    <div class="filter-bar">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="visualisation">Visualisation</button>
-      <button class="filter-btn" data-filter="product">Product</button>
-      <button class="filter-btn" data-filter="abstract">Abstract</button>
-    </div>
+  <div class="grid-controls-3d">
+    <span class="grid-controls-label-3d">Grid</span>
+    <button class="grid-btn-3d active" onclick="set3dGrid(this, 'repeat(2, 1fr)')">2</button>
+    <button class="grid-btn-3d" onclick="set3dGrid(this, 'repeat(3, 1fr)')">3</button>
+    <button class="grid-btn-3d" onclick="set3dGrid(this, 'repeat(6, 1fr)')">6</button>
   </div>
 
-  <div class="grid" id="grid">
+  <div class="grid-3d" id="grid-3d">
 
-    <div class="card" data-date="2024-05-15" data-tag="product">
-      <div class="card-thumb-placeholder">🎧</div>
-      <div class="card-body">
-        <div class="card-meta">
+    <!-- KARTA 1
+         Video: nahraj soubor do slozky video/ a uprav src
+         Pokud nemas video, pouzij <img> misto <video> -->
+    <div class="card-3d">
+      <div class="card-3d-video">
+        <video autoplay loop muted playsinline>
+          <source src="video/headphones-preview.mp4" type="video/mp4">
+          <!-- fallback -->
+          <div class="card-3d-placeholder">🎧</div>
+        </video>
+        <!-- pokud nemas video, smaz video tag a odkomentuj:
+        <img src="images/headphones-render.jpg" alt="Headphones render"> -->
+      </div>
+      <div class="card-3d-body">
+        <div class="card-3d-meta">
           <span class="card-tag">Product</span>
           <span class="card-date">May 15, 2024</span>
         </div>
-        <div class="card-title">Product render — headphones</div>
-        <div class="card-desc">Photorealistic render of headphones for an e-commerce product listing.</div>
+        <div class="card-3d-title">Product render — headphones</div>
+        <div class="card-3d-desc">Photorealistic render of headphones for an e-commerce product listing.</div>
       </div>
     </div>
 
-    <div class="card" data-date="2024-03-20" data-tag="visualisation">
-      <div class="card-thumb-placeholder">🧊</div>
-      <div class="card-body">
-        <div class="card-meta">
+    <!-- KARTA 2 -->
+    <div class="card-3d">
+      <div class="card-3d-video">
+        <video autoplay loop muted playsinline>
+          <source src="video/apartment-preview.mp4" type="video/mp4">
+          <div class="card-3d-placeholder">🧊</div>
+        </video>
+      </div>
+      <div class="card-3d-body">
+        <div class="card-3d-meta">
           <span class="card-tag">Visualisation</span>
           <span class="card-date">Mar 20, 2024</span>
         </div>
-        <div class="card-title">Architectural visualisation</div>
-        <div class="card-desc">Interior render of a modern apartment — Blender + Cycles.</div>
+        <div class="card-3d-title">Architectural visualisation</div>
+        <div class="card-3d-desc">Interior render of a modern apartment — Blender + Cycles.</div>
       </div>
     </div>
 
-    <div class="card" data-date="2024-01-10" data-tag="abstract">
-      <div class="card-thumb-placeholder">🌀</div>
-      <div class="card-body">
-        <div class="card-meta">
+    <!-- KARTA 3 -->
+    <div class="card-3d">
+      <div class="card-3d-video">
+        <video autoplay loop muted playsinline>
+          <source src="video/abstract-preview.mp4" type="video/mp4">
+          <div class="card-3d-placeholder">🌀</div>
+        </video>
+      </div>
+      <div class="card-3d-body">
+        <div class="card-3d-meta">
           <span class="card-tag">Abstract</span>
           <span class="card-date">Jan 10, 2024</span>
         </div>
-        <div class="card-title">Abstract scene</div>
-        <div class="card-desc">Procedural geometry with experimental lighting and materials.</div>
+        <div class="card-3d-title">Abstract scene</div>
+        <div class="card-3d-desc">Procedural geometry with experimental lighting and materials.</div>
       </div>
     </div>
 
@@ -92,6 +212,44 @@
     <span>Built on GitHub Pages</span>
   </footer>
 
-  <script src="gallery.js"></script>
+
+  <style>
+    .grid-controls-3d {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 40px;
+      margin-bottom: 16px;
+    }
+    .grid-controls-label-3d {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+    .grid-btn-3d {
+      padding: 5px 14px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text);
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .grid-btn-3d:hover { background: rgba(255,255,255,0.08); }
+    .grid-btn-3d.active { background: #fff; color: #0a0a0a; border-color: #fff; }
+    @media (max-width: 700px) { .grid-controls-3d { padding: 0 20px; } }
+  </style>
+
+  <script>
+    function set3dGrid(btn, cols) {
+      document.getElementById('grid-3d').style.gridTemplateColumns = cols;
+      document.querySelectorAll('.grid-btn-3d').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
 </body>
 </html>

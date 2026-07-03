@@ -22,7 +22,7 @@
   <section class="category-header">
     <p class="hero-eyebrow">Work</p>
     <h1>Video</h1>
-    <p>Documentaries, commercials and music videos — a selection of video projects sorted by date.</p>
+    <p>Documentaries, commercials and music videos — click any project to watch.</p>
   </section>
 
   <div class="category-tabs">
@@ -32,58 +32,63 @@
     <a href="ostatni.html" class="cat-tab">Other</a>
   </div>
 
-  <p class="gallery-count" id="count">3 projects</p>
-
-  <div class="controls-bar">
-    <div class="sort-toggle">
-      <button class="sort-btn active" data-sort="newest">Newest</button>
-      <button class="sort-btn" data-sort="oldest">Oldest</button>
-    </div>
-    <div class="filter-bar">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="documentary">Documentary</button>
-      <button class="filter-btn" data-filter="commercial">Commercial</button>
-      <button class="filter-btn" data-filter="music video">Music video</button>
-    </div>
+  <!-- VIDEO CARDS GRID -->
+  <div class="view-controls">
+    <span class="view-controls-label">View</span>
+    <button class="view-btn active" onclick="setView(this, 'list')">☰ List</button>
+    <button class="view-btn" onclick="setView(this, 'grid')">⊞ Grid</button>
+    <button class="view-btn" onclick="setView(this, 'titles')">≡ Titles</button>
   </div>
 
-  <div class="grid" id="grid">
+  <div class="video-list" id="video-list">
 
-    <div class="card" data-date="2024-05-01" data-tag="documentary">
-      <div class="card-thumb-placeholder">🎬</div>
-      <div class="card-body">
-        <div class="card-meta">
+    <!-- KARTA 1 — nahrad youtube ID a thumbnail -->
+    <a href="projects/video/video-short-doc.html" class="video-card">
+      <div class="video-card-thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Short documentary">
+        <div class="video-card-play">▶</div>
+      </div>
+      <div class="video-card-body">
+        <div class="video-card-title">Short documentary</div>
+        <div class="video-card-meta">
           <span class="card-tag">Documentary</span>
-          <span class="card-date">May 1, 2024</span>
+          <span class="video-card-date">May 1, 2024</span>
         </div>
-        <div class="card-title">Short documentary</div>
-        <div class="card-desc">A mini-documentary about craftsmen from central Bohemia.</div>
       </div>
-    </div>
+      <div class="video-card-date">May 1, 2024</div>
+    </a>
 
-    <div class="card" data-date="2024-03-10" data-tag="commercial">
-      <div class="card-thumb-placeholder">📺</div>
-      <div class="card-body">
-        <div class="card-meta">
+    <!-- KARTA 2 -->
+    <a href="projects/video/video-cafe-spot.html" class="video-card">
+      <div class="video-card-thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Café commercial">
+        <div class="video-card-play">▶</div>
+      </div>
+      <div class="video-card-body">
+        <div class="video-card-title">Café commercial</div>
+        <div class="video-card-meta">
           <span class="card-tag">Commercial</span>
-          <span class="card-date">Mar 10, 2024</span>
+          <span class="video-card-date">Mar 10, 2024</span>
         </div>
-        <div class="card-title">Café commercial</div>
-        <div class="card-desc">A thirty-second spot for a local café, shot and edited in a single day.</div>
       </div>
-    </div>
+      <div class="video-card-date">Mar 10, 2024</div>
+    </a>
 
-    <div class="card" data-date="2023-12-05" data-tag="music video">
-      <div class="card-thumb-placeholder">🎵</div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-tag">Music video</span>
-          <span class="card-date">Dec 5, 2023</span>
-        </div>
-        <div class="card-title">Music video — local band</div>
-        <div class="card-desc">A narrative music video shot in one evening in an abandoned factory.</div>
+    <!-- KARTA 3 -->
+    <a href="projects/video/video-music-video.html" class="video-card">
+      <div class="video-card-thumb">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Music video">
+        <div class="video-card-play">▶</div>
       </div>
-    </div>
+      <div class="video-card-body">
+        <div class="video-card-title">Music video — local band</div>
+        <div class="video-card-meta">
+          <span class="card-tag">Music video</span>
+          <span class="video-card-date">Dec 5, 2023</span>
+        </div>
+      </div>
+      <div class="video-card-date">Dec 5, 2023</div>
+    </a>
 
   </div>
 
@@ -92,6 +97,207 @@
     <span>Built on GitHub Pages</span>
   </footer>
 
-  <script src="gallery.js"></script>
+  <style>
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 0 40px 80px;
+    }
+
+    /* ── Default: large list (thumbnail left, text right) ── */
+    .video-card {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--surface);
+      transition: background 0.2s;
+    }
+
+    .video-card:hover { background: var(--surface2); }
+
+    .video-card-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.8);
+      transition: filter 0.3s, transform 0.4s;
+    }
+
+    .video-card:hover .video-card-thumb img {
+      filter: brightness(1);
+      transform: scale(1.03);
+    }
+
+    .video-card-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: rgba(255,255,255,0.9);
+      background: rgba(0,0,0,0.25);
+      transition: background 0.2s;
+    }
+
+    .video-card:hover .video-card-play { background: rgba(0,0,0,0.45); }
+
+    .video-card-body {
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .video-card-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+
+    .video-card-meta { display: flex; align-items: center; gap: 12px; }
+
+    .video-card-date {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* outer date only visible in titles mode */
+    .video-card > .video-card-date { display: none; }
+    #video-list.view-titles .video-card > .video-card-date { display: block; }
+    /* inner date in meta only visible in list/grid mode */
+    #video-list.view-titles .video-card-meta .video-card-date { display: none; }
+
+    /* ── Grid mode ── */
+    #video-list.view-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    #video-list.view-grid .video-card {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    #video-list.view-grid .video-card-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
+
+    #video-list.view-grid .video-card-play { font-size: 28px; }
+
+    #video-list.view-grid .video-card-body {
+      padding: 16px 20px 20px;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ── Titles mode: compact rows ── */
+    #video-list.view-titles {
+      gap: 0;
+    }
+
+    #video-list.view-titles .video-card {
+      grid-template-columns: 96px 1fr auto;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      min-height: 64px;
+    }
+
+    #video-list.view-titles .video-card:last-child { border-bottom: none; }
+
+    #video-list.view-titles .video-card-thumb {
+      width: 96px;
+      height: 64px;
+      aspect-ratio: unset;
+    }
+
+    #video-list.view-titles .video-card-play { font-size: 14px; }
+
+    #video-list.view-titles .video-card-body {
+      padding: 0 16px;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      justify-content: flex-start;
+    }
+
+    #video-list.view-titles .video-card-title { font-size: 16px; }
+
+    #video-list.view-titles .video-card-date {
+      padding: 0 24px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 700px) {
+      .video-list { margin: 0 0 60px; }
+      .video-card { grid-template-columns: 1fr; }
+      .video-card-thumb { aspect-ratio: 16/9; width: 100%; }
+      .video-card-body { padding: 20px; }
+      .video-card-date { padding: 0 20px 16px; }
+      #video-list.view-grid { grid-template-columns: 1fr; }
+      #video-list.view-titles .video-card { grid-template-columns: 72px 1fr auto; }
+      #video-list.view-titles .video-card-thumb { width: 72px; height: 48px; }
+      #video-list.view-titles .video-card-body { padding: 0 12px; }
+      #video-list.view-titles .video-card-date { padding: 0 12px; }
+      .view-controls { padding: 0 20px; }
+    }
+
+    /* ── View controls ── */
+    .view-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 40px;
+      margin-bottom: 16px;
+    }
+    .view-controls-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+    .view-btn {
+      padding: 5px 14px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text);
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .view-btn:hover { background: rgba(255,255,255,0.08); }
+    .view-btn.active { background: #fff; color: #0a0a0a; border-color: #fff; }
+  </style>
+
+  <script>
+    function setView(btn, mode) {
+      const list = document.getElementById('video-list');
+      list.classList.remove('view-grid', 'view-titles');
+      if (mode !== 'list') list.classList.add('view-' + mode);
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
+
 </body>
 </html>
