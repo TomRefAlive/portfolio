@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Windows Ad 2022 — Tomáš Mašek</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../style.css">
+  <style>
+    .project-header {
+      padding: 120px 40px 48px;
+      max-width: 900px;
+    }
+
+    .project-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+
+    .project-back:hover { color: var(--text); }
+    .project-back::before { content: '←'; font-size: 14px; }
+
+    .project-header h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .project-meta-item { display: flex; flex-direction: column; gap: 4px; }
+
+    .project-meta-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .project-meta-value { font-size: 13px; color: var(--text); }
+
+    .project-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── VIDEO LIST ── */
+    .video-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 0 40px 80px;
+      border: 1px solid var(--border);
+      max-width: 900px;
+    }
+
+    .video-block {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .video-block:last-child { border-bottom: none; }
+
+    /* YouTube embed */
+    .video-embed {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Caption below video */
+    .video-block-caption {
+      padding: 20px 28px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      background: var(--surface);
+    }
+
+    .video-block-left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .video-block-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .video-block-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .video-block-tag {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 3px;
+    }
+
+    @media (max-width: 700px) {
+      .project-header { padding: 100px 20px 32px; }
+      .video-stack { margin: 0 0 60px; }
+      .video-block-caption { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../../../index.html" class="nav-logo">Tomáš Mašek</a>
+    <ul class="nav-links">
+      <li><a href="../../../index.html#work">Work</a></li>
+      <li><a href="../../../index.html#blog">Blog</a></li>
+      <li><a href="../../../index.html#about">About</a></li>
+      <li><a href="../../../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="project-header">
+    <a href="../../../3d.html" class="project-back">3D</a>
+    <h1>Windows Ad 2022</h1>
+    <div class="project-meta">
+      <div class="project-meta-item">
+        <span class="project-meta-label">Year</span>
+        <span class="project-meta-value">2022</span>
+      </div>
+      <div class="project-meta-item">
+        <span class="project-meta-label">Category</span>
+        <span class="project-meta-value">3D / Motion</span>
+      </div>
+      <div class="project-meta-item">
+        <span class="project-meta-label">Clips</span>
+        <span class="project-meta-value">3</span>
+      </div>
+    </div>
+    <p class="project-desc">
+      A series of three short 3D animated clips created for a Windows advertisement concept. Modelled and rendered in Blender.
+    </p>
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="video-stack">
+
+    <div class="video-block">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/BYuRYLYnw_k?rel=0&modestbranding=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div class="video-block-caption">
+        <div class="video-block-left">
+          <span class="video-block-title">Clip 1</span>
+          <p class="video-block-desc">Your description for clip 1 — what it shows, how it was made, what software or technique you used.</p>
+        </div>
+        <span class="video-block-tag">3D / Motion · 2022</span>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/87urbz-0G24?rel=0&modestbranding=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div class="video-block-caption">
+        <div class="video-block-left">
+          <span class="video-block-title">Clip 2</span>
+          <p class="video-block-desc">Your description for clip 2.</p>
+        </div>
+        <span class="video-block-tag">3D / Motion · 2022</span>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/ngst0q0reiI?rel=0&modestbranding=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div class="video-block-caption">
+        <div class="video-block-left">
+          <span class="video-block-title">Clip 3</span>
+          <p class="video-block-desc">Your description for clip 3.</p>
+        </div>
+        <span class="video-block-tag">3D / Motion · 2022</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>© 2025 Tomáš Mašek</span>
+    <span>Built on GitHub Pages</span>
+  </footer>
+
+</body>
+</html>
