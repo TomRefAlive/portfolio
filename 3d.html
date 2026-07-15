@@ -117,7 +117,7 @@
     <ul class="nav-links">
       <li><a href="index.html#work">Work</a></li>
       <li><a href="index.html#blog">Blog</a></li>
-      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#about">About me</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </nav>
@@ -135,7 +135,14 @@
     <a href="ostatni.html" class="cat-tab">Other</a>
   </div>
 
-  <p class="gallery-count">4 projects</p>
+  <p class="gallery-count">1 project</p>
+
+  <div class="controls-bar-3d">
+    <div class="sort-toggle">
+      <button class="sort-btn active" data-sort="newest">Newest</button>
+      <button class="sort-btn" data-sort="oldest">Oldest</button>
+    </div>
+  </div>
 
   <div class="grid-controls-3d">
     <span class="grid-controls-label-3d">Grid</span>
@@ -149,15 +156,13 @@
     <!-- KARTA 1
          Video: nahraj soubor do slozky video/ a uprav src
          Pokud nemas video, pouzij <img> misto <video> -->
+    <!--
     <div class="card-3d">
       <div class="card-3d-video">
         <video autoplay loop muted playsinline>
           <source src="video/headphones-preview.mp4" type="video/mp4">
-          <!-- fallback -->
           <div class="card-3d-placeholder">🎧</div>
         </video>
-        <!-- pokud nemas video, smaz video tag a odkomentuj:
-        <img src="images/headphones-render.jpg" alt="Headphones render"> -->
       </div>
       <div class="card-3d-body">
         <div class="card-3d-meta">
@@ -168,8 +173,10 @@
         <div class="card-3d-desc">Photorealistic render of headphones for an e-commerce product listing.</div>
       </div>
     </div>
+    -->
 
     <!-- KARTA 2 -->
+    <!--
     <div class="card-3d">
       <div class="card-3d-video">
         <video autoplay loop muted playsinline>
@@ -186,8 +193,10 @@
         <div class="card-3d-desc">Interior render of a modern apartment — Blender + Cycles.</div>
       </div>
     </div>
+    -->
 
     <!-- KARTA 3 -->
+    <!--
     <div class="card-3d">
       <div class="card-3d-video">
         <video autoplay loop muted playsinline>
@@ -204,6 +213,7 @@
         <div class="card-3d-desc">Procedural geometry with experimental lighting and materials.</div>
       </div>
     </div>
+    -->
 
     <!-- Windows Ad 2022 -->
     <a href="projects/3d/windows-ad-2022/windows-ad-2022.html" class="card-3d">
@@ -256,7 +266,34 @@
     }
     .grid-btn-3d:hover { background: rgba(255,255,255,0.08); }
     .grid-btn-3d.active { background: #fff; color: #0a0a0a; border-color: #fff; }
-    @media (max-width: 700px) { .grid-controls-3d { padding: 0 20px; } }
+    @media (max-width: 700px) { .grid-controls-3d { padding: 0 20px; } .controls-bar-3d { padding: 0 20px; } }
+
+    .controls-bar-3d {
+      padding: 0 40px;
+      margin-bottom: 16px;
+    }
+
+    .sort-toggle {
+      display: flex;
+      border: 1px solid var(--pill-border);
+      border-radius: 100px;
+      overflow: hidden;
+      width: fit-content;
+    }
+
+    .sort-btn {
+      padding: 7px 18px;
+      border: none;
+      background: transparent;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+
+    .sort-btn:not(:last-child) { border-right: 1px solid var(--pill-border); }
+    .sort-btn.active { background: #fff; color: #0a0a0a; }
   </style>
 
   <script>
@@ -265,6 +302,22 @@
       document.querySelectorAll('.grid-btn-3d').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
+
+    document.querySelectorAll('.sort-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const grid = document.getElementById('grid-3d');
+        const cards = Array.from(grid.children).filter(el => el.nodeType === 1 && (el.classList.contains('card-3d')));
+        const withDate = cards.map(c => {
+          const dateEl = c.querySelector('.card-date');
+          const date = dateEl ? new Date(dateEl.textContent) : new Date(0);
+          return { el: c, date };
+        });
+        withDate.sort((a, b) => btn.dataset.sort === 'newest' ? b.date - a.date : a.date - b.date);
+        withDate.forEach(item => grid.appendChild(item.el));
+      });
+    });
   </script>
 </body>
 </html>

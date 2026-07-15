@@ -14,7 +14,7 @@
     <ul class="nav-links">
       <li><a href="#work">Work</a></li>
       <li><a href="#blog">Blog</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#about">About me</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -135,19 +135,29 @@
   </section>
 
   <section class="section" id="about">
-    <p class="section-label">About</p>
+    <p class="section-label">About me</p>
     <div class="about-grid">
       <div class="about-text">
         <h2>Hi,<br>I'm Tomáš.</h2>
-        <p>I work at the intersection of photography, video and 3D. I'm drawn to visual storytelling — whether through a single frame or a two-minute film.</p>
-        <p>Based in the Czech Republic, I find inspiration in architecture, nature and the ordinary things that are easy to overlook.</p>
+
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang(this, 'en')">EN</button>
+          <button class="lang-btn" onclick="setLang(this, 'cz')">CZ</button>
+        </div>
+
+        <p data-lang="en">I work across photography, video, and 3D. Beyond that — fitness, a healthy lifestyle, and reading that actually improves how I think: stoicism, practical philosophy. I also enjoy working with my hands — woodworking, fixing and building things. Creating, in some form, is a constant.</p>
+        <p data-lang="cz" style="display:none">Věnuji se fotografii, videu a 3D. Kromě toho mě baví fitness, zdravý životní styl a čtení, které mě skutečně posouvá dál — stoicismus, praktická filozofie. Rád pracuji i rukama — woodworking, opravy a stavění věcí. Tvorba je v nějaké podobě stálou součástí mého života.</p>
+
+        <p data-lang="en">Based in Prague, Czech Republic. My interests run wide — from the adrenaline of training to the calm focus of woodworking.</p>
+        <p data-lang="cz" style="display:none">Žiji v Praze. Moje zájmy jsou pestré — od adrenalinu z tréninku až po klid při práci se dřevem.</p>
+
         <ul class="skills-list">
           <li>Photography</li>
           <li>Video</li>
           <li>Blender</li>
           <li>DaVinci Resolve</li>
-          <li>Lightroom</li>
-          <li>After Effects</li>
+          <li>Creativity</li>
+          <li>Wood working</li>
         </ul>
       </div>
       <div class="about-image-wrap">
@@ -161,18 +171,22 @@
       <h2>Let's work<br>together.</h2>
       <p>Have a project, an idea, or just want to say hello — reach out.</p>
       <div class="contact-links">
+        <!--
         <a href="mailto:your@email.com" class="contact-link">
           your@email.com
           <span>Email →</span>
         </a>
-        <a href="https://instagram.com/" target="_blank" class="contact-link">
-          @yourinstagram
+        -->
+        <a href="https://www.instagram.com/creator_tomasm/" target="_blank" class="contact-link">
+          @creator_tomasm
           <span>Instagram →</span>
         </a>
-        <a href="https://linkedin.com/" target="_blank" class="contact-link">
+        <!--
+        <a href="https://www.linkedin.com/in/creator-tomasm/" target="_blank" class="contact-link">
           LinkedIn
           <span>Profile →</span>
         </a>
+        -->
       </div>
     </div>
   </section>
@@ -181,5 +195,43 @@
     <span>© 2026 Tomáš Mašek</span>
   </footer>
 
+
+  <style>
+    .about-text h2 {
+      margin-bottom: 28px;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .lang-btn {
+      padding: 6px 16px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      background: transparent;
+      color: #fff;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+
+    .lang-btn:hover { background: rgba(255,255,255,0.08); }
+    .lang-btn.active { background: #fff; color: #0a0a0a; border-color: #fff; }
+  </style>
+
+  <script>
+    function setLang(btn, lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.dataset.lang === lang ? '' : 'none';
+      });
+    }
+  </script>
 </body>
 </html>
