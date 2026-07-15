@@ -98,6 +98,9 @@
 
   <section class="section" id="blog">
     <p class="section-label">Blog</p>
+    <p class="blog-empty">This section is empty for now — new posts coming soon.</p>
+
+    <!-- Az budes psat prispevky, odkomentuj blog-list a smaz blog-empty odstavec vyse
     <div class="blog-list">
 
       <a href="#" class="blog-item">
@@ -132,6 +135,7 @@
       </a>
 
     </div>
+    -->
   </section>
 
   <section class="section" id="about">
@@ -161,7 +165,7 @@
         </ul>
       </div>
       <div class="about-image-wrap">
-        <!-- <img src="images/portrait.jpg" alt="Tomáš Mašek"> -->
+        <img src="images/portrait-1.jpg" alt="Tomáš Mašek">
       </div>
     </div>
   </section>
@@ -200,6 +204,18 @@
     .about-text h2 {
       margin-bottom: 28px;
     }
+
+    .blog-empty {
+      color: var(--muted, rgba(255,255,255,0.45));
+      font-size: 14px;
+    }
+
+    .about-image-wrap {
+      max-width: 380px;
+      max-height: 480px;
+      margin-left: auto;
+    }
+
 
     .lang-toggle {
       display: flex;
