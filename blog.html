@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Tomáš Mašek</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Tomáš Mašek</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About me</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="category-header">
+    <p class="hero-eyebrow">Writing</p>
+    <h1>Blog</h1>
+    <p>Notes on photography, video, and 3D — thoughts, workflow, and things I've learned along the way.</p>
+  </section>
+
+  <div class="category-tabs">
+    <a href="foto.html" class="cat-tab">Photos</a>
+    <a href="video.html" class="cat-tab">Video</a>
+    <a href="3d.html" class="cat-tab">3D</a>
+    <a href="blog.html" class="cat-tab active">Blog</a>
+    <a href="ostatni.html" class="cat-tab">Other</a>
+  </div>
+
+  <p class="blog-empty-page">This section is empty for now — new posts coming soon.</p>
+
+  <!-- Az budes psat prispevky, odkomentuj blog-list a smaz odstavec blog-empty-page vyse
+  <div class="blog-list">
+
+    <a href="#" class="blog-item">
+      <div>
+        <div class="blog-item-title">Why I switched to Blender — and never looked back</div>
+        <div class="blog-item-tags">
+          <span class="blog-item-tag">3D</span>
+          <span class="blog-item-tag">Workflow</span>
+        </div>
+      </div>
+      <div class="blog-item-date">June 2025</div>
+    </a>
+
+  </div>
+  -->
+
+  <footer>
+    <span>© 2026 Tomáš Mašek</span>
+  </footer>
+
+  <style>
+    .blog-empty-page {
+      padding: 0 40px 80px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .blog-list { padding: 0 40px 80px; }
+
+    @media (max-width: 700px) {
+      .blog-empty-page, .blog-list { padding: 0 20px 60px; }
+    }
+  </style>
+
+</body>
+</html>
