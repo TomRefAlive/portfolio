@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pillars — Tomáš Mašek</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../style.css">
+  <style>
+    .project-header {
+      padding: 120px 40px 48px;
+      max-width: 900px;
+    }
+
+    .project-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+
+    .project-back:hover { color: var(--text); }
+    .project-back::before { content: '←'; font-size: 14px; }
+
+    .project-header h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .project-meta-item { display: flex; flex-direction: column; gap: 4px; }
+
+    .project-meta-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .project-meta-value { font-size: 13px; color: var(--text); }
+
+    .project-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── VIDEO STACK (multiple clips) ── */
+    .video-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 0 40px 80px;
+      border: 1px solid var(--border);
+      max-width: 900px;
+    }
+
+    .video-block { border-bottom: 1px solid var(--border); }
+    .video-block:last-child { border-bottom: none; }
+
+    .video-embed {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .video-block-caption {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--surface);
+    }
+
+    .video-block-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .video-block-tag {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 700px) {
+      .project-header { padding: 100px 20px 32px; }
+      .video-stack { margin: 0 0 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../../../index.html" class="nav-logo">Tomáš Mašek</a>
+    <ul class="nav-links">
+      <li><a href="../../../index.html#work">Work</a></li>
+      <li><a href="../../../index.html#about">About me</a></li>
+      <li><a href="../../../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="project-header">
+    <a href="../../../3d.html" class="project-back">3D</a>
+    <h1>Pillars</h1>
+    <div class="project-meta">
+      <div class="project-meta-item">
+        <span class="project-meta-label">Date</span>
+        <span class="project-meta-value">Mar 2, 2023</span>
+      </div>
+      <div class="project-meta-item">
+        <span class="project-meta-label">Category</span>
+        <span class="project-meta-value">3D / Motion</span>
+      </div>
+      <div class="project-meta-item">
+        <span class="project-meta-label">Software</span>
+        <span class="project-meta-value">Blender</span>
+      </div>
+    </div>
+    <p class="project-desc">
+      A Blender study exploring pillar structures and lighting — two clips from the same project.
+    </p>
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="video-stack">
+
+    <div class="video-block">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/wC_ZYfbQRog?rel=0&modestbranding=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div class="video-block-caption">
+        <span class="video-block-title">Clip 1</span>
+        <span class="video-block-tag">Blender · Mar 2, 2023</span>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/GJI3_dDnYG4?rel=0&modestbranding=1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div class="video-block-caption">
+        <span class="video-block-title">Clip 2</span>
+        <span class="video-block-tag">Blender · Mar 2, 2023</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>© 2026 Tomáš Mašek</span>
+  </footer>
+
+</body>
+</html>
