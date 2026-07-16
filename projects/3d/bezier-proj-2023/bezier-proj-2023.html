@@ -82,9 +82,28 @@
       border: none;
     }
 
+    .project-image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 0 40px 80px;
+      max-width: 900px;
+    }
+
+    .project-image-grid img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: var(--surface2);
+    }
+
     @media (max-width: 700px) {
       .project-header { padding: 100px 20px 32px; }
       .video-wrap { margin: 0 0 60px; }
+      .project-image-grid { grid-template-columns: 1fr; margin: 0 0 60px; }
     }
   </style>
 </head>
@@ -128,6 +147,12 @@
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
+  </div>
+
+  <!-- IMAGES -->
+  <div class="project-image-grid">
+    <img src="bezier_1.jpg" alt="Bezier Project — still 1">
+    <img src="bezier_2.jpg" alt="Bezier Project — still 2">
   </div>
 
   <footer>
