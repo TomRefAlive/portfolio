@@ -36,12 +36,21 @@ nav {
 }
 
 .nav-logo {
-  font-family: 'Anton', sans-serif;
-  font-size: 16px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #0a0a0a;
   text-decoration: none;
+  padding: 7px 18px;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  transition: opacity 0.2s;
+  background: #fff;
+}
+
+.nav-logo:hover {
+  opacity: 0.85;
 }
 
 .nav-links {
@@ -52,21 +61,20 @@ nav {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--text);
+  color: #0a0a0a;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.01em;
   padding: 7px 18px;
-  border: 1px solid var(--pill-border);
+  border: 1px solid #fff;
   border-radius: 100px;
-  transition: background 0.2s, border-color 0.2s;
-  background: transparent;
+  transition: opacity 0.2s;
+  background: #fff;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  background: rgba(255,255,255,0.1);
-  border-color: var(--pill-border-hover);
+  opacity: 0.85;
 }
 
 /* ── HERO (index) ── */
