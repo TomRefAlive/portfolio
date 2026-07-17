@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magi Cubes — Tomáš Mašek</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../style.css">
+  <style>
+    .project-header {
+      padding: 150px 40px 48px;
+      max-width: 900px;
+    }
+
+    .project-back {
+      position: fixed;
+      top: 90px;
+      left: 40px;
+      z-index: 200;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 18px;
+      border: 1px solid rgba(0,0,0,0.5);
+      border-radius: 100px;
+      background: #fff;
+      color: #0a0a0a;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .project-back:hover { opacity: 0.85; }
+    .project-back::before { content: '←'; font-size: 14px; }
+
+    .project-header h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .project-meta-item { display: flex; flex-direction: column; gap: 4px; }
+
+    .project-meta-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .project-meta-value { font-size: 13px; color: var(--text); }
+
+    .project-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── VIDEO EMBED ── */
+    .video-wrap {
+      margin: 0 40px 80px;
+      position: relative;
+      aspect-ratio: 16/9;
+      max-width: 900px;
+      background: #000;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ── PHOTO GRID ── */
+    .project-image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 0 40px 80px;
+      max-width: 900px;
+    }
+
+    .project-image-grid img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+      background: var(--surface2);
+      cursor: pointer;
+      transition: filter 0.3s, transform 0.4s;
+      filter: brightness(0.9);
+    }
+
+    .project-image-grid img:hover {
+      filter: brightness(1);
+      transform: scale(1.02);
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+
+    .lightbox.active { opacity: 1; pointer-events: all; }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 24px; right: 28px;
+      font-size: 28px;
+      color: rgba(255,255,255,0.55);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+      transition: color 0.2s;
+      z-index: 1001;
+    }
+
+    .lightbox-close:hover { color: #fff; }
+
+    .lightbox-prev,
+    .lightbox-next {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 14px 18px;
+      transition: all 0.2s;
+      z-index: 1001;
+    }
+
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .lightbox-counter {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.35);
+    }
+
+    @media (max-width: 700px) {
+      .project-header { padding: 100px 20px 32px; }
+      .video-wrap { margin: 0 0 60px; }
+      .project-image-grid { grid-template-columns: repeat(2, 1fr); margin: 0 0 60px; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../../../index.html" class="nav-logo">Tomáš Mašek</a>
+    <ul class="nav-links">
+      <li><a href="../../../index.html#work">Work</a></li>
+      <li><a href="../../../index.html#about">About me</a></li>
+      <li><a href="../../../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="project-header">
+    <a href="../../../3d.html" class="project-back">3D</a>
+    <h1>Magi Cubes</h1>
+    <div class="project-meta">
+      <div class="project-meta-item">
+        <span class="project-meta-label">Date</span>
+        <span class="project-meta-value">Dec 27, 2023</span>
+      </div>
+      <div class="project-meta-item">
+        <span class="project-meta-label">Category</span>
+        <span class="project-meta-value">3D / Motion</span>
+      </div>
+      <div class="project-meta-item">
+        <span class="project-meta-label">Software</span>
+        <span class="project-meta-value">Blender</span>
+      </div>
+    </div>
+    <p class="project-desc">
+      A Blender animation using our favorite default cubes.
+    </p>
+  </div>
+
+  <!-- VIDEO EMBED -->
+  <div class="video-wrap">
+    <iframe
+      src="https://www.youtube.com/embed/IaAv3rebjiE?rel=0&modestbranding=1"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- IMAGES -->
+  <div class="project-image-grid">
+    <img src="magi-cube1.jpg" alt="Magi Cubes — still 1" class="lightbox-trigger" data-index="0">
+    <img src="magi-cube2.jpg" alt="Magi Cubes — still 2" class="lightbox-trigger" data-index="1">
+    <img src="magi-cube3.jpg" alt="Magi Cubes — still 3" class="lightbox-trigger" data-index="2">
+    <img src="magi-cube4.jpg" alt="Magi Cubes — still 4" class="lightbox-trigger" data-index="3">
+    <img src="magi-cube5.jpg" alt="Magi Cubes — still 5" class="lightbox-trigger" data-index="4">
+    <img src="magi-cube6.jpg" alt="Magi Cubes — still 6" class="lightbox-trigger" data-index="5">
+    <img src="magi-cube7.jpg" alt="Magi Cubes — still 7" class="lightbox-trigger" data-index="6">
+  </div>
+
+  <footer>
+    <span>© 2026 Tomáš Mašek</span>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lb-close">✕</button>
+    <button class="lightbox-prev" id="lb-prev">←</button>
+    <img class="lightbox-img" id="lb-img" src="" alt="">
+    <button class="lightbox-next" id="lb-next">→</button>
+    <div class="lightbox-counter" id="lb-counter"></div>
+  </div>
+
+  <script>
+    const triggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCounter = document.getElementById('lb-counter');
+    let current = 0;
+
+    function openLightbox(index) {
+      current = index;
+      lbImg.src = triggers[current].src;
+      lbImg.alt = triggers[current].alt;
+      lbCounter.textContent = (current + 1) + ' / ' + triggers.length;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function showNext() {
+      current = (current + 1) % triggers.length;
+      lbImg.src = triggers[current].src;
+      lbImg.alt = triggers[current].alt;
+      lbCounter.textContent = (current + 1) + ' / ' + triggers.length;
+    }
+
+    function showPrev() {
+      current = (current - 1 + triggers.length) % triggers.length;
+      lbImg.src = triggers[current].src;
+      lbImg.alt = triggers[current].alt;
+      lbCounter.textContent = (current + 1) + ' / ' + triggers.length;
+    }
+
+    triggers.forEach((img, i) => {
+      img.addEventListener('click', () => openLightbox(i));
+    });
+
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-next').addEventListener('click', showNext);
+    document.getElementById('lb-prev').addEventListener('click', showPrev);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>
