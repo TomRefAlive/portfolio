@@ -6,6 +6,72 @@
   <title>Other work — Tomáš Mašek</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── TITLES-STYLE ROW LIST (matches video.html Titles view) ── */
+    .other-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 0 40px 80px;
+    }
+
+    .other-row {
+      display: grid;
+      grid-template-columns: 96px 1fr auto;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      min-height: 64px;
+      transition: background 0.2s;
+    }
+
+    .other-row:last-child { border-bottom: none; }
+    .other-row:hover { background: var(--surface2); }
+
+    .other-row-thumb {
+      width: 96px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface2);
+      font-size: 24px;
+    }
+
+    .other-row-body {
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .other-row-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .other-row-date {
+      padding: 0 24px;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 700px) {
+      .other-list { margin: 0 0 60px; }
+      .other-row { grid-template-columns: 72px 1fr auto; }
+      .other-row-thumb { width: 72px; height: 48px; font-size: 20px; }
+      .other-row-body { padding: 0 12px; }
+      .other-row-date { padding: 0 12px; font-size: 11px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -21,7 +87,7 @@
   <section class="category-header">
     <p class="hero-eyebrow">Work</p>
     <h1>Other</h1>
-    <p>Graphic design, branding and web — projects outside of photography, video and 3D.</p>
+    <p>Personal builds and projects outside of photography, video and 3D.</p>
   </section>
 
   <div class="category-tabs">
@@ -32,44 +98,27 @@
     <a href="other.html" class="cat-tab active">Other</a>
   </div>
 
-  <p class="gallery-count" id="count">0 projects</p>
+  <p class="gallery-count" id="count">2 projects</p>
 
-  <div class="controls-bar">
-    <div class="sort-toggle">
-      <button class="sort-btn active" data-sort="newest">Newest</button>
-      <button class="sort-btn" data-sort="oldest">Oldest</button>
-    </div>
-  </div>
+  <div class="other-list">
 
-  <div class="grid" id="grid">
-
-    <!--
-    <div class="card" data-date="2024-04-25" data-tag="web design">
-      <div class="card-thumb-placeholder">💻</div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-tag">Web design</span>
-          <span class="card-date">Apr 25, 2024</span>
-        </div>
-        <div class="card-title">Landing page</div>
-        <div class="card-desc">Design and build of a one-page website for a local project.</div>
+    <a href="projects/others/project-atmos-1/project-atmos-1.html" class="other-row">
+      <div class="other-row-thumb">🌡️</div>
+      <div class="other-row-body">
+        <span class="other-row-title">Project Atmos</span>
+        <span class="card-tag">Electronics / Maker</span>
       </div>
-    </div>
-    -->
+      <span class="other-row-date">In progress</span>
+    </a>
 
-    <!--
-    <div class="card" data-date="2023-12-01" data-tag="branding">
-      <div class="card-thumb-placeholder">✏️</div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-tag">Branding</span>
-          <span class="card-date">Dec 1, 2023</span>
-        </div>
-        <div class="card-title">Café branding</div>
-        <div class="card-desc">Visual identity for a local café — logo, menu and print materials.</div>
+    <a href="projects/others/mini-ww-box-gf-1/mini-ww-box-gf-1.html" class="other-row">
+      <div class="other-row-thumb">📦</div>
+      <div class="other-row-body">
+        <span class="other-row-title">Wooden Box</span>
+        <span class="card-tag">Woodworking</span>
       </div>
-    </div>
-    -->
+      <span class="other-row-date">In progress</span>
+    </a>
 
   </div>
 
@@ -77,6 +126,5 @@
     <span>© 2026 Tomáš Mašek</span>
   </footer>
 
-  <script src="gallery.js"></script>
 </body>
 </html>
