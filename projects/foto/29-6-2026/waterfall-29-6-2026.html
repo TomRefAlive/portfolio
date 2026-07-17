@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studio Session — Tomáš Mašek</title>
+  <title>Nature walk — Tomáš Mašek</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Anton&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../../../style.css">
   <style>
-     .project-header {
+    .project-header {
       padding: 150px 40px 48px;
       max-width: 900px;
     }
@@ -83,15 +83,6 @@
       margin: 0 40px 80px;
     }
 
-    .photo-hero {
-      grid-column: span 2;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-      background: var(--surface2);
-      cursor: pointer;
-      position: relative;
-    }
-
     .photo-cell {
       aspect-ratio: 1/1;
       overflow: hidden;
@@ -100,7 +91,6 @@
       position: relative;
     }
 
-    .photo-hero img,
     .photo-cell img {
       width: 100%;
       height: 100%;
@@ -110,7 +100,6 @@
       transition: transform 0.4s ease, filter 0.3s ease;
     }
 
-    .photo-hero:hover img,
     .photo-cell:hover img {
       transform: scale(1.04);
       filter: brightness(1);
@@ -204,95 +193,98 @@
     @media (max-width: 700px) {
       .project-header { padding: 100px 20px 32px; }
       .project-grid { grid-template-columns: repeat(2, 1fr); margin: 0 0 60px; }
-      .photo-hero { grid-column: span 2; aspect-ratio: 4/3; }
       .lightbox-prev { left: 8px; }
       .lightbox-next { right: 8px; }
     }
 
     @media (max-width: 400px) {
       .project-grid { grid-template-columns: 1fr; }
-      .photo-hero { grid-column: span 1; }
     }
+
+    /* ── GRID CONTROLS ── */
+    .grid-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 40px;
+      margin-bottom: 16px;
+    }
+
+    .grid-controls-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .grid-btn {
+      padding: 5px 14px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text);
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+
+    .grid-btn:hover { background: rgba(255,255,255,0.08); }
+    .grid-btn.active { background: #fff; color: #0a0a0a; border-color: #fff; }
+
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="../index.html" class="nav-logo">Tomáš Mašek</a>
+    <a href="../../../index.html" class="nav-logo">Tomáš Mašek</a>
     <ul class="nav-links">
-      <li><a href="../index.html#work">Work</a></li>
-      <li><a href="../index.html#blog">Blog</a></li>
-      <li><a href="../index.html#about">About me</a></li>
-      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../../../index.html#work">Work</a></li>
+      <li><a href="../../../index.html#blog">Blog</a></li>
+      <li><a href="../../../index.html#about">About me</a></li>
+      <li><a href="../../../index.html#contact">Contact</a></li>
     </ul>
   </nav>
 
   <div class="project-header">
-    <a href="../foto.html" class="project-back">Photography</a>
-    <h1>Studio Session</h1>
+    <a href="../../../foto.html" class="project-back">Photography</a>
+    <h1>Waterfall in Kutná Hora</h1>
     <div class="project-meta">
       <div class="project-meta-item">
         <span class="project-meta-label">Date</span>
-        <span class="project-meta-value">June 1, 2024</span>
+        <span class="project-meta-value">June 29, 2026</span>
       </div>
       <div class="project-meta-item">
         <span class="project-meta-label">Category</span>
-        <span class="project-meta-value">Portrait</span>
+        <span class="project-meta-value">Nature</span>
       </div>
       <div class="project-meta-item">
         <span class="project-meta-label">Photos</span>
-        <span class="project-meta-value">8</span>
+        <span class="project-meta-value">1</span>
       </div>
     </div>
     <p class="project-desc">
-      A portrait session focused on light and simplicity. Shot in a minimalist studio with a single softbox, exploring how small shifts in posture and expression change the entire mood of an image.
+      A quick shot of a waterfall in Kutná Hora.
     </p>
   </div>
 
   <!-- PHOTO GRID
-       Jak přidat fotku: nahraď <div class="photo-placeholder-dark"> za <img src="../images/nazev.jpg" alt="popis">
+       Jak přidat fotku: nahraď <div class="photo-placeholder-dark"> za <img src="../../images/nazev.jpg" alt="popis">
        Hero fotka zabírá 2 sloupce, ostatní jsou čtvercové. -->
+  <div class="grid-controls">
+    <span class="grid-controls-label">Grid</span>
+    <button class="grid-btn active" data-cols="3" onclick="setGrid(this, 3)">3</button>
+    <button class="grid-btn" data-cols="6" onclick="setGrid(this, 6)">6</button>
+    <button class="grid-btn" data-cols="12" onclick="setGrid(this, 12)">12</button>
+    <button class="grid-btn" data-cols="30" onclick="setGrid(this, 30)">30</button>
+  </div>
+
   <div class="project-grid" id="lightbox-grid">
 
-    <div class="photo-hero" data-index="0">
-      <!-- <img src="../images/studio-01.jpg" alt="Studio session 1"> -->
-      <div class="photo-placeholder-dark">📷</div>
-    </div>
-
-    <div class="photo-cell" data-index="1">
-      <!-- <img src="../images/studio-02.jpg" alt="Studio session 2"> -->
-      <div class="photo-placeholder-dark">📷</div>
-    </div>
-
-    <div class="photo-cell" data-index="2">
-      <!-- <img src="../images/studio-03.jpg" alt="Studio session 3"> -->
-      <div class="photo-placeholder-dark">📷</div>
-    </div>
-
-    <div class="photo-cell" data-index="3">
-      <!-- <img src="../images/studio-04.jpg" alt="Studio session 4"> -->
-      <div class="photo-placeholder-dark">📷</div>
-    </div>
-
-    <div class="photo-cell" data-index="4">
-      <!-- <img src="../images/studio-05.jpg" alt="Studio session 5"> -->
-      <div class="photo-placeholder-dark">📷</div>
-    </div>
-
-    <div class="photo-cell" data-index="5">
-      <!-- <img src="../images/studio-06.jpg" alt="Studio session 6"> -->
-      <div class="photo-placeholder-dark">📷</div>
-    </div>
-
-    <div class="photo-cell" data-index="6">
-      <!-- <img src="../images/studio-07.jpg" alt="Studio session 7"> -->
-      <div class="photo-placeholder-dark">📷</div>
-    </div>
-
-    <div class="photo-cell" data-index="7">
-      <!-- <img src="../images/studio-08.jpg" alt="Studio session 8"> -->
-      <div class="photo-placeholder-dark">📷</div>
-    </div>
+<div class="photo-cell" data-index="0">
+  <img src="foto1.jpg" alt="Waterfall in Kutná Hora">
+</div>
 
   </div>
 
@@ -363,6 +355,13 @@
       if (e.key === 'ArrowLeft') showPrev();
       if (e.key === 'Escape') closeLightbox();
     });
+
+    function setGrid(btn, cols) {
+      const grid = document.getElementById('lightbox-grid');
+      grid.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+      document.querySelectorAll('.grid-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
   </script>
 </body>
 </html>
