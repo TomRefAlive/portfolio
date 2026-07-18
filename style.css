@@ -702,8 +702,12 @@ footer {
   .hero-scroll { display: none; }
   .hero { --hero-focus: 50% 30%; }
   .section { padding: 60px 20px; }
-  .cat-grid { grid-template-columns: 1fr; }
-  .cat-card { aspect-ratio: 4/3; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-card { aspect-ratio: 1/1; }
+  .cat-card-body { padding: 12px 14px; }
+  .cat-card-title { font-size: 15px; }
+  .cat-card-count { font-size: 9px; }
+  .cat-card-arrow { font-size: 16px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-image-wrap { order: -1; aspect-ratio: 4/3; }
 
