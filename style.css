@@ -279,10 +279,10 @@ nav {
 
 .cat-card:hover .cat-card-arrow { transform: translate(3px, -3px); }
 
-.cat-card.foto  .cat-card-bg    { background: linear-gradient(135deg, #1a1a1a, #2d2d2d); }
-.cat-card.video .cat-card-bg    { background: linear-gradient(135deg, #0d0d0d, #1f1f1f); }
-.cat-card.three .cat-card-bg    { background: linear-gradient(135deg, #111420, #1e2035); }
-.cat-card.other .cat-card-bg    { background: linear-gradient(135deg, #1a1410, #2d2418); }
+.cat-card.foto .cat-card-bg    { background: linear-gradient(135deg, #1a1a1a, #2d2d2d); }
+.cat-card.video .cat-card-bg   { background: linear-gradient(135deg, #0d0d0d, #1f1f1f); }
+.cat-card.three .cat-card-bg   { background: linear-gradient(135deg, #111420, #1e2035); }
+.cat-card.ostatni .cat-card-bg { background: linear-gradient(135deg, #1a1410, #2d2418); }
 
 /* ── BLOG (index) ── */
 .blog-list { display: flex; flex-direction: column; }
@@ -723,14 +723,4 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   .card, .cat-card, .cat-card-bg, .cat-card-arrow, .photo-wrap img { transition: none; }
-}
-
-.desc-link {
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.desc-link:hover {
-  opacity: 0.7;
 }
