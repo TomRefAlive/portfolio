@@ -728,3 +728,13 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .card, .cat-card, .cat-card-bg, .cat-card-arrow, .photo-wrap img { transition: none; }
 }
+
+.desc-link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.desc-link:hover {
+  opacity: 0.7;
+}
